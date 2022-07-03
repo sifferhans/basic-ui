@@ -8,4 +8,6 @@ A collection of basic but polished components for Vue 3.
 ## Storybook
 
 To run the storybook playground, run this command
-`npm run storybook`
+```
+npm run storybook
+```
