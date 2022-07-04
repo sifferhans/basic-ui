@@ -37,9 +37,6 @@ onMounted(() => {
   flex-direction: column;
   gap: 0.25rem;
 
-  &__label {
-  }
-
   &__element {
     padding-inline: var(--b-input-padding-inline);
     padding-block: var(--b-input-padding-block);
