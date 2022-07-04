@@ -1,35 +1,57 @@
 <script setup>
-const props = defineProps({
+defineProps({
   label: String,
   tag: {
     type: [String, Object],
-    default: 'button'
+    default: 'button',
   },
   size: {
     type: String,
     default: 'default',
     validator(value) {
       return ['default', 'small'].includes(value)
-    }
+    },
   },
   theme: {
     type: String,
     default: 'default',
     validator(value) {
-      return ['default', 'primary', 'secondary', 'tertiary', 'positive', 'negative'].includes(value)
-    }
-  }
+      return [
+        'default',
+        'primary',
+        'secondary',
+        'tertiary',
+        'positive',
+        'negative',
+      ].includes(value)
+    },
+  },
+  loading: {
+    type: Boolean,
+    default: false,
+  },
 })
 
 const emit = defineEmits(['click'])
 </script>
 
 <template>
-  <component :is="tag" class="b-button" :class="[`b-button--size-${size} b-button--theme-${theme}`]"
-    @click="emit('click')">
-    <slot name="icon-left" />
-    <slot name="default">{{ label }}</slot>
-    <slot name="icon-right" />
+  <component
+    v-bind="$attrs"
+    :is="tag"
+    class="b-button"
+    :class="[
+      `b-button--size-${size} b-button--theme-${theme}`,
+      { 'b-button--state-loading': loading },
+    ]"
+    @click="emit('click')"
+    :disabled="loading"
+  >
+    <div class="b-button__content">
+      <slot name="icon-left" />
+      <slot name="default">{{ label }}</slot>
+      <slot name="icon-right" />
+    </div>
   </component>
 </template>
 
@@ -38,6 +60,7 @@ const emit = defineEmits(['click'])
   box-sizing: border-box;
   border: none;
   cursor: pointer;
+  position: relative;
 
   padding-inline: var(--b-button-padding-inline);
   padding-block: var(--b-button-padding-block);
@@ -45,18 +68,50 @@ const emit = defineEmits(['click'])
 
   display: flex;
   align-items: center;
-  gap: var(--b-button-gap, .5rem);
+  gap: var(--b-button-gap, 0.5rem);
+
+  &__content {
+    transition: 150ms var(--b-easing-function, ease-out);
+  }
 
   /* Sizes */
   &--size {
     &-default {
-      --b-button-padding-block: .6rem;
+      --b-button-padding-block: 0.6rem;
       --b-button-padding-inline: 1rem;
     }
 
     &-small {
-      --b-button-padding-block: .35rem;
-      --b-button-padding-inline: .7rem;
+      --b-button-padding-block: 0.35rem;
+      --b-button-padding-inline: 0.7rem;
+    }
+  }
+
+  /* States */
+  &--state {
+    &-loading {
+      &:after {
+        content: '';
+        height: 0.75rem;
+        aspect-ratio: 1;
+        border-radius: 20rem;
+
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+
+        border: 2px solid transparent;
+        border-right-color: currentColor;
+        border-top-color: currentColor;
+
+        animation: spin 1s var(--b-easing-function, linear) infinite;
+      }
+
+      .b-button__content {
+        opacity: 0;
+        transform: translateY(1rem);
+      }
     }
   }
 
@@ -142,6 +197,12 @@ const emit = defineEmits(['click'])
         background-color: var(--b-color-positive--active, #9c1717);
       }
     }
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
   }
 }
 </style>

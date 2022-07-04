@@ -21,7 +21,7 @@ const Template = (args) => ({
     return { args };
   },
   template: '<Button v-bind="args" />'
-}) 
+})
 
 export const Default = Template.bind({})
 Default.args = { theme: 'default', label: 'Default button' }
@@ -40,3 +40,6 @@ Positive.args = { theme: 'positive', label: 'Positive button' }
 
 export const Negative = Template.bind({})
 Negative.args = { theme: 'negative', label: 'Negative button' }
+
+export const Loading = Template.bind({})
+Loading.args = { theme: 'primary', label: 'Loading button', loading: true }
