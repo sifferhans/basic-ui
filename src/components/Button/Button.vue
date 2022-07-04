@@ -45,7 +45,7 @@ const emit = defineEmits(['click'])
       { 'b-button--state-loading': loading },
     ]"
     @click="emit('click')"
-    :disabled="loading"
+    :disabled="loading || $attrs.disabled"
   >
     <div class="b-button__content">
       <slot name="icon-left" />
@@ -59,8 +59,8 @@ const emit = defineEmits(['click'])
 .b-button {
   box-sizing: border-box;
   border: none;
-  cursor: pointer;
   position: relative;
+  font: inherit;
 
   padding-inline: var(--b-button-padding-inline);
   padding-block: var(--b-button-padding-block);
@@ -70,6 +70,14 @@ const emit = defineEmits(['click'])
   align-items: center;
   gap: var(--b-button-gap, 0.5rem);
 
+  &:not(:disabled) {
+    cursor: pointer;
+  }
+
+  &:where(:disabled) {
+    cursor: not-allowed;
+  }
+
   &__content {
     transition: 150ms var(--b-easing-function, ease-out);
   }
@@ -77,19 +85,21 @@ const emit = defineEmits(['click'])
   /* Sizes */
   &--size {
     &-default {
-      --b-button-padding-block: 0.6rem;
+      --b-button-padding-block: 0.75rem;
       --b-button-padding-inline: 1rem;
     }
 
     &-small {
-      --b-button-padding-block: 0.35rem;
-      --b-button-padding-inline: 0.7rem;
+      --b-button-padding-block: 0.4rem;
+      --b-button-padding-inline: 0.6rem;
     }
   }
 
   /* States */
   &--state {
     &-loading {
+      cursor: wait;
+
       &:after {
         content: '';
         height: 0.75rem;
@@ -121,11 +131,11 @@ const emit = defineEmits(['click'])
       background-color: var(--b-color-default, #f0f0f0);
       color: var(--b-color-default-contrast, #000000);
 
-      &:hover {
+      &:not(:disabled):hover {
         background-color: var(--b-color-default--hover, #eaeaea);
       }
 
-      &:active {
+      &:not(:disabled):active {
         background-color: var(--b-color-default--active, #e0e0e0);
       }
     }
@@ -134,11 +144,11 @@ const emit = defineEmits(['click'])
       background-color: var(--b-color-primary, #000000);
       color: var(--b-color-primary-contrast, #ffffff);
 
-      &:hover {
+      &:not(:disabled):hover {
         background-color: var(--b-color-default--hover, #202020);
       }
 
-      &:active {
+      &:not(:disabled):active {
         background-color: var(--b-color-default--active, #000000);
       }
     }
@@ -148,12 +158,12 @@ const emit = defineEmits(['click'])
       color: var(--b-color-secondary-contrast, #000000);
       border: 1px solid var(--b-color-secondary, #000000);
 
-      &:hover {
+      &:not(:disabled):hover {
         background-color: transparent;
         border-color: var(--b-color-secondary--hover, #202020);
       }
 
-      &:active {
+      &:not(:disabled):active {
         background-color: transparent;
         border-color: var(--b-color-secondary--active, #000000);
       }
@@ -163,11 +173,11 @@ const emit = defineEmits(['click'])
       background-color: var(--b-color-tertiary, transparent);
       color: var(--b-color-tertiary-contrast, #000000);
 
-      &:hover {
+      &:not(:disabled):hover {
         background-color: var(--b-color-tertiary--hover, #f0f0f0);
       }
 
-      &:active {
+      &:not(:disabled):active {
         background-color: var(--b-color-tertiary--active, #e0e0e0);
       }
     }
@@ -176,11 +186,11 @@ const emit = defineEmits(['click'])
       background-color: var(--b-color-positive, #29af46);
       color: var(--b-color-positive-contrast, #ffffff);
 
-      &:hover {
+      &:not(:disabled):hover {
         background-color: var(--b-color-positive--hover, #3dc45a);
       }
 
-      &:active {
+      &:not(:disabled):active {
         background-color: var(--b-color-positive--active, #179c34);
       }
     }
@@ -189,11 +199,11 @@ const emit = defineEmits(['click'])
       background-color: var(--b-color-positive, #af2929);
       color: var(--b-color-positive-contrast, #ffffff);
 
-      &:hover {
+      &:not(:disabled):hover {
         background-color: var(--b-color-positive--hover, #c43d3d);
       }
 
-      &:active {
+      &:not(:disabled):active {
         background-color: var(--b-color-positive--active, #9c1717);
       }
     }
