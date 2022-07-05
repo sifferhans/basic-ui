@@ -1,7 +1,4 @@
 <script setup>
-import { ref, onMounted } from 'vue'
-import { nanoid } from 'nanoid'
-
 defineProps({
   label: String,
   size: {
@@ -11,24 +8,23 @@ defineProps({
       return ['default'].includes(value)
     },
   },
-})
-
-const id = ref('')
-onMounted(() => {
-  id.value = nanoid()
+  required: {
+    type: Boolean,
+    default: false,
+  },
 })
 </script>
 
 <template>
-  <div
+  <label
     class="b-input"
-    :class="[`b-input--size-${size}`, { 'b-input--required': $attrs.required }]"
+    :class="[`b-input--size-${size}`, { 'b-input--required': required }]"
   >
-    <label :for="id" class="b-input__label" v-if="label || $slots.label">
+    <div class="b-input__label" v-if="label || $slots.label">
       <slot name="label">{{ label }}</slot>
-    </label>
-    <input :id="id" class="b-input__element" v-bind="$attrs" />
-  </div>
+    </div>
+    <input class="b-input__element" v-bind="$attrs" />
+  </label>
 </template>
 
 <style lang="scss">

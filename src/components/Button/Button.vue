@@ -120,7 +120,7 @@ const emit = defineEmits(['click'])
 
       .b-button__content {
         opacity: 0;
-        transform: translateY(1rem);
+        transform: translateY(0.2rem);
       }
     }
   }
