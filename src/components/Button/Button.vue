@@ -36,17 +36,10 @@ const emit = defineEmits(['click'])
 </script>
 
 <template>
-  <component
-    v-bind="$attrs"
-    :is="tag"
-    class="b-button"
-    :class="[
-      `b-button--size-${size} b-button--theme-${theme}`,
-      { 'b-button--state-loading': loading },
-    ]"
-    @click="emit('click')"
-    :disabled="loading || $attrs.disabled"
-  >
+  <component v-bind="$attrs" :is="tag" class="b-button" :class="[
+    `b-button--size-${size} b-button--theme-${theme}`,
+    { 'b-button--state-loading': loading },
+  ]" @click="emit('click')" :disabled="loading || $attrs.disabled">
     <div class="b-button__content">
       <slot name="icon-left" />
       <slot name="default">{{ label }}</slot>
@@ -60,7 +53,7 @@ const emit = defineEmits(['click'])
   box-sizing: border-box;
   border: none;
   position: relative;
-  font: inherit;
+  font-size: 1rem;
 
   padding-inline: var(--b-button-padding-inline);
   padding-block: var(--b-button-padding-block);

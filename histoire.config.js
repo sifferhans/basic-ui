@@ -8,7 +8,7 @@ export default defineConfig({
 			dark: '/Logo_light.svg',
 			light: '/Logo_dark.svg',
 		},
-		logoHref: 'https://sifferhans.github.io/basic-ui',
+		logoHref: '/',
 		favicon: '/favicon.svg'
 	}
 })
