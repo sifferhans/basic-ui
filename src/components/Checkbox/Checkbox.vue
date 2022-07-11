@@ -11,6 +11,11 @@ const props = defineProps({
   <label class="b-checkbox">
     <input type="checkbox" class="b-checkbox__element" :value="modelValue"
       @change="emit('update:modelValue', $event.target.value)">
+    <svg xmlns="http://www.w3.org/2000/svg" class="b-checkbox__icon" viewBox="0 0 20 20" fill="currentColor">
+      <path fill-rule="evenodd"
+        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+        clip-rule="evenodd" />
+    </svg>
     <div class="b-checkbox__content">
       <span class="b-checkbox__label">{{ label }}</span>
       <span class="b-checkbox__sublabel" v-if="sublabel">{{ sublabel }}</span>
@@ -25,6 +30,14 @@ const props = defineProps({
   gap: .75rem;
   font-size: 1rem;
 
+  &__icon {
+    height: 1em;
+
+    position: absolute;
+    color: var(--b-color-primary-contrast, #ffffff);
+
+  }
+
   &__element {
     position: relative;
     margin: 0;
@@ -35,18 +48,22 @@ const props = defineProps({
     border-radius: var(--b-border-radius, 4px);
 
     &:after {
+      content: '';
       transition: 150ms var(--b-easing-function, ease-out);
+      position: absolute;
+      inset: 0;
+      transform: scale(0);
+      opacity: 0;
     }
 
     &:checked {
       border-color: var(--b-color-primary, #000000);
 
       &:after {
-        content: '✓';
         color: var(--b-color-primary-contrast, #ffffff);
-        position: absolute;
-        inset: 0;
         background-color: var(--b-color-primary, #000000);
+        transform: scale(1);
+        opacity: 1;
       }
     }
   }
