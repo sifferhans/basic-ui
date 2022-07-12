@@ -30,12 +30,17 @@ const props = defineProps({
   gap: .75rem;
   font-size: 1rem;
 
+  &:hover {
+    .b-checkbox__element:not(:indeterminate, :disabled) {
+      border-color: var(--b-color-primary, #000000);
+    }
+  }
+
   &__icon {
     height: 1em;
 
     position: absolute;
     color: var(--b-color-primary-contrast, #ffffff);
-
   }
 
   &__element {
@@ -44,12 +49,22 @@ const props = defineProps({
     appearance: none;
     width: 1.2em;
     aspect-ratio: 1;
+    flex-shrink: 0;
     border: 1px solid var(--b-checkbox-border-color, #eaeaea);
     border-radius: var(--b-border-radius, 4px);
 
+    &:disabled {
+      border-color: var(--b-checkbox-color-disabled, #d0d0d0);
+
+      &:after {
+        background-color: var(--b-checkbox-color-disabled, #d0d0d0);
+      }
+    }
+
     &:after {
       content: '';
-      transition: 150ms var(--b-easing-function, ease-out);
+      background-color: var(--b-color-primary, #000000);
+      transition: 75ms var(--b-easing-function, ease-out);
       position: absolute;
       inset: 0;
       transform: scale(0);
@@ -61,7 +76,6 @@ const props = defineProps({
 
       &:after {
         color: var(--b-color-primary-contrast, #ffffff);
-        background-color: var(--b-color-primary, #000000);
         transform: scale(1);
         opacity: 1;
       }
@@ -71,6 +85,7 @@ const props = defineProps({
   &__content {
     display: flex;
     flex-direction: column;
+    gap: .2rem;
   }
 
   &__label {
