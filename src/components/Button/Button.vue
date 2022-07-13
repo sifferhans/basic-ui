@@ -30,16 +30,30 @@ defineProps({
     type: Boolean,
     default: false,
   },
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
 })
 
 const emit = defineEmits(['click'])
 </script>
 
 <template>
-  <component v-bind="$attrs" :is="tag" class="b-button" :class="[
-    `b-button--size-${size} b-button--theme-${theme}`,
-    { 'b-button--state-loading': loading },
-  ]" @click="emit('click')" :disabled="loading || $attrs.disabled">
+  <component
+    v-bind="$attrs"
+    :is="tag"
+    class="b-button"
+    :class="[
+      `b-button--size-${size} b-button--theme-${theme}`,
+      {
+        'b-button--state-loading': loading,
+        'b-button--state-disabled': disabled,
+      },
+    ]"
+    @click="emit('click')"
+    :disabled="loading || disabled"
+  >
     <div class="b-button__content">
       <slot name="icon-left" />
       <slot name="default">{{ label }}</slot>
@@ -57,7 +71,7 @@ const emit = defineEmits(['click'])
 
   padding-inline: var(--b-button-padding-inline);
   padding-block: var(--b-button-padding-block);
-  border-radius: var(--b-button-border-radius, 4px);
+  border-radius: var(--b-border-radius, var(--_b-border-radius));
 
   display: flex;
   align-items: center;
@@ -72,7 +86,7 @@ const emit = defineEmits(['click'])
   }
 
   &__content {
-    transition: 150ms var(--b-easing-function, ease-out);
+    transition: 150ms var(--b-easing-function, var(--_b-easing-function));
   }
 
   /* Sizes */
@@ -108,13 +122,18 @@ const emit = defineEmits(['click'])
         border-right-color: currentColor;
         border-top-color: currentColor;
 
-        animation: spin 1s var(--b-easing-function, linear) infinite;
+        animation: spin 1s var(--b-easing-function, var(--_b-easing-function))
+          infinite;
       }
 
       .b-button__content {
         opacity: 0;
         transform: translateY(0.2rem);
       }
+    }
+
+    &-disabled {
+      opacity: 0.5;
     }
   }
 
@@ -134,70 +153,109 @@ const emit = defineEmits(['click'])
     }
 
     &-primary {
-      background-color: var(--b-color-primary, #000000);
-      color: var(--b-color-primary-contrast, #ffffff);
+      background-color: var(--b-color-primary, var(--_b-color-primary));
+      color: var(--b-color-primary-contrast, var(--_b-color-primary-contrast));
 
       &:not(:disabled):hover {
-        background-color: var(--b-color-default--hover, #202020);
+        background-color: var(
+          --b-color-primary--hover,
+          var(--_b-color-primary--hover)
+        );
       }
 
       &:not(:disabled):active {
-        background-color: var(--b-color-default--active, #000000);
+        background-color: var(
+          --b-color-primary--active,
+          var(--_b-color-primary--active)
+        );
       }
     }
 
     &-secondary {
       background-color: transparent;
-      color: var(--b-color-secondary-contrast, #000000);
-      border: 1px solid var(--b-color-secondary, #000000);
+      color: var(--b-color-secondary, var(--_b-color-primary));
+      border: 1px solid var(--b-color-secondary, var(--_b-color-primary));
 
       &:not(:disabled):hover {
         background-color: transparent;
-        border-color: var(--b-color-secondary--hover, #202020);
+        border-color: var(
+          --b-color-secondary--hover,
+          var(--_b-color-primary--hover)
+        );
       }
 
       &:not(:disabled):active {
         background-color: transparent;
-        border-color: var(--b-color-secondary--active, #000000);
+        border-color: var(
+          --b-color-secondary--active,
+          var(--_b-color-primary--active)
+        );
       }
     }
 
     &-tertiary {
-      background-color: var(--b-color-tertiary, transparent);
-      color: var(--b-color-tertiary-contrast, #000000);
+      background-color: var(--b-color-tertiary, var(--_b-color-tertiary));
+      color: var(
+        --b-color-tertiary-contrast,
+        var(--_b-color-tertiary-contrast)
+      );
 
       &:not(:disabled):hover {
-        background-color: var(--b-color-tertiary--hover, #f0f0f0);
+        background-color: var(
+          --b-color-tertiary--hover,
+          var(--_b-color-tertiary--hover)
+        );
       }
 
       &:not(:disabled):active {
-        background-color: var(--b-color-tertiary--active, #e0e0e0);
+        background-color: var(
+          --b-color-tertiary--active,
+          var(--_b-color-tertiary--active)
+        );
       }
     }
 
     &-positive {
-      background-color: var(--b-color-positive, #29af46);
-      color: var(--b-color-positive-contrast, #ffffff);
+      background-color: var(--b-color-positive, var(--_b-color-positive));
+      color: var(
+        --b-color-positive-contrast,
+        var(--_b-color-positive-contrast)
+      );
 
       &:not(:disabled):hover {
-        background-color: var(--b-color-positive--hover, #3dc45a);
+        background-color: var(
+          --b-color-positive--hover,
+          var(--_b-color-positive--hover)
+        );
       }
 
       &:not(:disabled):active {
-        background-color: var(--b-color-positive--active, #179c34);
+        background-color: var(
+          --b-color-positive--active,
+          var(--_b-color-positive--active)
+        );
       }
     }
 
     &-negative {
-      background-color: var(--b-color-positive, #af2929);
-      color: var(--b-color-positive-contrast, #ffffff);
+      background-color: var(--b-color-negative, var(--_b-color-negative));
+      color: var(
+        --b-color-negative-contrast,
+        var(--_b-color-negative-contrast)
+      );
 
       &:not(:disabled):hover {
-        background-color: var(--b-color-positive--hover, #c43d3d);
+        background-color: var(
+          --b-color-negative--hover,
+          var(--_b-color-negative--hover)
+        );
       }
 
       &:not(:disabled):active {
-        background-color: var(--b-color-positive--active, #9c1717);
+        background-color: var(
+          --b-color-negative--active,
+          var(--_b-color-negative--active)
+        );
       }
     }
   }

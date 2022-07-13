@@ -16,7 +16,10 @@ defineProps({
 </script>
 
 <template>
-  <label class="b-input" :class="[`b-input--size-${size}`, { 'b-input--required': required }]">
+  <label
+    class="b-input"
+    :class="[`b-input--size-${size}`, { 'b-input--required': required }]"
+  >
     <div class="b-input__label" v-if="label || $slots.label">
       <slot name="label">{{ label }}</slot>
     </div>

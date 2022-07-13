@@ -14,22 +14,32 @@ defineProps({
   },
   items: {
     type: Array,
-    default: () => []
+    default: () => [],
   },
   modelValue: String,
-  placeholder: String
+  placeholder: String,
 })
 const emit = defineEmits(['update:modelValue'])
 </script>
 
 <template>
-  <label class="b-select" :class="[`b-select--size-${size}`, { 'b-select--required': required }]">
+  <label
+    class="b-select"
+    :class="[`b-select--size-${size}`, { 'b-select--required': required }]"
+  >
     <div class="b-select__label" v-if="label || $slots.label">
       <slot name="label">{{ label }}</slot>
     </div>
-    <select class="b-select__element" v-bind="$attrs" :value="modelValue" @input="emit('update:modelValue')">
+    <select
+      class="b-select__element"
+      v-bind="$attrs"
+      :value="modelValue"
+      @input="emit('update:modelValue')"
+    >
       <option value="" disabled>{{ placeholder }}</option>
-      <option v-for="(item, i) in items" :key="i" :value="item.value">{{ item.label }}</option>
+      <option v-for="(item, i) in items" :key="i" :value="item.value">
+        {{ item.label }}
+      </option>
     </select>
   </label>
 </template>

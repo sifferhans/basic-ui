@@ -1,20 +1,41 @@
 <script setup>
 const emit = defineEmits(['update:modelValue'])
-const props = defineProps({
-  label: String,
-  sublabel: String,
-  modelValue: [Boolean, String, Number]
+defineProps({
+  label: {
+    type: String,
+  },
+  sublabel: {
+    type: String,
+  },
+  modelValue: {
+    type: [Boolean, String, Number],
+  },
+  checked: {
+    type: Boolean,
+  },
 })
 </script>
 
 <template>
   <label class="b-checkbox">
-    <input type="checkbox" class="b-checkbox__element" :value="modelValue"
-      @change="emit('update:modelValue', $event.target.value)">
-    <svg xmlns="http://www.w3.org/2000/svg" class="b-checkbox__icon" viewBox="0 0 20 20" fill="currentColor">
-      <path fill-rule="evenodd"
+    <input
+      type="checkbox"
+      class="b-checkbox__element"
+      :value="modelValue"
+      :checked="checked"
+      @change="emit('update:modelValue', $event.target.value)"
+    />
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="b-checkbox__icon"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+    >
+      <path
+        fill-rule="evenodd"
         d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-        clip-rule="evenodd" />
+        clip-rule="evenodd"
+      />
     </svg>
     <div class="b-checkbox__content">
       <span class="b-checkbox__label">{{ label }}</span>
@@ -27,7 +48,7 @@ const props = defineProps({
 .b-checkbox {
   display: flex;
   align-items: start;
-  gap: .75rem;
+  gap: 0.75rem;
   font-size: 1rem;
 
   &:hover {
@@ -52,40 +73,22 @@ const props = defineProps({
     flex-shrink: 0;
     border: 1px solid var(--b-checkbox-border-color, #eaeaea);
     border-radius: var(--b-border-radius, 4px);
+    transition: 100ms var(--b-easing-function, var(--_b-easing-function));
 
     &:disabled {
       border-color: var(--b-checkbox-color-disabled, #d0d0d0);
-
-      &:after {
-        background-color: var(--b-checkbox-color-disabled, #d0d0d0);
-      }
-    }
-
-    &:after {
-      content: '';
-      background-color: var(--b-color-primary, #000000);
-      transition: 75ms var(--b-easing-function, ease-out);
-      position: absolute;
-      inset: 0;
-      transform: scale(0);
-      opacity: 0;
     }
 
     &:checked {
       border-color: var(--b-color-primary, #000000);
-
-      &:after {
-        color: var(--b-color-primary-contrast, #ffffff);
-        transform: scale(1);
-        opacity: 1;
-      }
+      border-width: 0.6em;
     }
   }
 
   &__content {
     display: flex;
     flex-direction: column;
-    gap: .2rem;
+    gap: 0.2rem;
   }
 
   &__label {
@@ -93,7 +96,7 @@ const props = defineProps({
   }
 
   &__sublabel {
-    opacity: .5;
+    opacity: 0.5;
   }
 }
 </style>
