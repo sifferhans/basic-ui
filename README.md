@@ -1,9 +1,11 @@
 # Basic UI
 
-A collection of basic but polished components for Vue 3.
-
 > **Warning**
 > This library is very WIP, and should not yet be used in production.
+
+A collection of basic but polished components for Vue 3.
+
+[See the components](https://basic-ui.vercel.app/)
 
 ## Storybook
 

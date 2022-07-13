@@ -3,7 +3,7 @@ import Button from './Button.vue'
 </script>
 
 <template>
-  <Story title="Button" :layout="{ type: 'grid', width: '100%' }">
+  <Story title="Button">
     <Variant title="Default">
       <Button label="Default button" />
     </Variant>
@@ -29,9 +29,3 @@ import Button from './Button.vue'
     </Variant>
   </Story>
 </template>
-
-<docs lang="md">
-# Button
-
-Used for user interactions
-</docs>

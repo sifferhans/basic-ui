@@ -3,7 +3,7 @@ import Input from './Input.vue'
 </script>
 
 <template>
-  <Story title="Input" :layout="{ type: 'grid', width: '100%' }">
+  <Story title="Input">
     <Variant title="Default">
       <Input label="Default Input" />
     </Variant>
@@ -17,9 +17,3 @@ import Input from './Input.vue'
     </Variant>
   </Story>
 </template>
-
-<docs lang="md">
-# Input
-
-Used for user input and forms.
-</docs>
