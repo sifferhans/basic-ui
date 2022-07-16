@@ -5,7 +5,7 @@
 
 A collection of basic but polished components for Vue 3.
 
-[See the components](https://basic-ui.vercel.app/)
+[See the components](https://basic-ui.sigveh.no/)
 
 ## Development
 
