@@ -9,7 +9,7 @@ const state = reactive({
 </script>
 
 <template>
-  <Story title="Button" :layout="{ type: 'grid', width: '100%' }">
+  <Story title="Button">
     <template #controls>
       <HstCheckbox title="Loading" v-model="state.loading" />
       <HstCheckbox title="Disabled" v-model="state.disabled" />

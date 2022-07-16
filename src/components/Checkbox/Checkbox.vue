@@ -76,7 +76,7 @@ defineProps({
     transition: 100ms var(--b-easing-function, var(--_b-easing-function));
 
     &:disabled {
-      border-color: var(--b-checkbox-color-disabled, #d0d0d0);
+      border-color: var(--b-checkbox-color-disabled, #d0d0d0) !important;
     }
 
     &:checked {
