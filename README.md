@@ -5,11 +5,11 @@
 
 A collection of basic but polished components for Vue 3.
 
-[See the components](https://basic-ui.vercel.app/)
+[See the components](https://basic-ui.sigveh.no/)
 
-## Storybook
+## Development
 
-To run the storybook playground, run this command
+To run the component playground, run this command
 ```
-npm run storybook
+npm run story:dev
 ```
