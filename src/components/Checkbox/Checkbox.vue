@@ -1,19 +1,20 @@
-<script setup>
-const emit = defineEmits(['update:modelValue'])
-defineProps({
-  label: {
-    type: String,
-  },
-  sublabel: {
-    type: String,
-  },
-  modelValue: {
-    type: [Boolean, String, Number],
-  },
-  checked: {
-    type: Boolean,
-  },
+<script setup lang="ts">
+export interface CheckboxProps {
+  label?: string
+  sublabel?: string
+  checked?: boolean
+  required?: boolean
+  modelValue?: boolean | string | number
+}
+
+withDefaults(defineProps<CheckboxProps>(), {
+  checked: false,
+  required: false,
 })
+
+const emit = defineEmits<{
+  (e: 'update:modelValue', value: boolean): void
+}>()
 </script>
 
 <template>
@@ -39,7 +40,7 @@ defineProps({
     </svg>
     <div class="b-checkbox__content">
       <span class="b-checkbox__label">{{ label }}</span>
-      <span class="b-checkbox__sublabel" v-if="sublabel">{{ sublabel }}</span>
+      <span v-if="sublabel" class="b-checkbox__sublabel">{{ sublabel }}</span>
     </div>
   </label>
 </template>
@@ -53,12 +54,13 @@ defineProps({
 
   &:hover {
     .b-checkbox__element:not(:indeterminate, :disabled) {
-      border-color: var(--b-color-primary, #000000);
+      border-color: var(--b-color-primary, black);
     }
   }
 
   &__icon {
-    height: 1em;
+    height: 1.2em;
+    width: 1em;
 
     position: absolute;
     color: var(--b-color-primary-contrast, #ffffff);
@@ -66,21 +68,21 @@ defineProps({
 
   &__element {
     position: relative;
-    margin: 0;
+    margin: 0.15rem 0;
     appearance: none;
     width: 1.2em;
     aspect-ratio: 1;
     flex-shrink: 0;
     border: 1px solid var(--b-checkbox-border-color, #eaeaea);
-    border-radius: var(--b-border-radius, 4px);
-    transition: 100ms var(--b-easing-function, var(--_b-easing-function));
+    border-radius: calc(var(--b-border-radius, 0.5rem) / 2);
+    transition: 100ms var(--b-easing-function, ease);
 
     &:disabled {
       border-color: var(--b-checkbox-color-disabled, #d0d0d0) !important;
     }
 
     &:checked {
-      border-color: var(--b-color-primary, #000000);
+      border-color: var(--b-color-primary, black);
       border-width: 0.6em;
     }
   }
@@ -88,7 +90,6 @@ defineProps({
   &__content {
     display: flex;
     flex-direction: column;
-    gap: 0.2rem;
   }
 
   &__label {
@@ -97,6 +98,7 @@ defineProps({
 
   &__sublabel {
     opacity: 0.5;
+    line-height: 1.1;
   }
 }
 </style>

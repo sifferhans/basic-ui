@@ -1,25 +1,23 @@
-<script setup>
-defineProps({
-  label: String,
-  size: {
-    type: String,
-    default: 'default',
-    validator(value) {
-      return ['default'].includes(value)
-    },
-  },
-  required: {
-    type: Boolean,
-    default: false,
-  },
-  items: {
-    type: Array,
-    default: () => [],
-  },
-  modelValue: String,
-  placeholder: String,
+<script setup lang="ts">
+export type SelectSize = 'default'
+export type SelectOption = { label: string; value: string }
+export interface SelectProps {
+  items: SelectOption[]
+  label?: string
+  size?: SelectSize
+  required?: boolean
+  modelValue?: string
+  placeholder?: string
+}
+
+withDefaults(defineProps<SelectProps>(), {
+  size: 'default',
+  required: false,
 })
-const emit = defineEmits(['update:modelValue'])
+
+const emit = defineEmits<{
+  (e: 'update:modelValue', value: string): void
+}>()
 </script>
 
 <template>
@@ -41,6 +39,20 @@ const emit = defineEmits(['update:modelValue'])
         {{ item.label }}
       </option>
     </select>
+    <svg
+      class="b-select__icon"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9"
+      />
+    </svg>
   </label>
 </template>
 
@@ -50,14 +62,29 @@ const emit = defineEmits(['update:modelValue'])
   flex-direction: column;
   gap: 0.25rem;
   font-size: 1rem;
+  position: relative;
 
   &__element {
     padding-inline: var(--b-select-padding-inline);
     padding-block: var(--b-select-padding-block);
-    border-radius: var(--b-select-border-radius, 4px);
+    border-radius: var(--b-select-border-radius, 0.5rem);
 
     border: 1px solid var(--b-select-border-color, #000);
     font: inherit;
+
+    &:focus-visible {
+      outline: 2px solid var(--b-color-primary, black);
+      outline-offset: 2px;
+    }
+  }
+
+  &__icon {
+    pointer-events: none;
+    width: 1.5rem;
+    aspect-ratio: 1;
+    position: absolute;
+    right: var(--b-select-padding-inline);
+    bottom: var(--b-select-padding-block);
   }
 
   /* Required */
@@ -74,7 +101,7 @@ const emit = defineEmits(['update:modelValue'])
   /* Sizes */
   &--size {
     &-default {
-      --b-select-padding-block: 0.75rem;
+      --b-select-padding-block: 0.6rem;
       --b-select-padding-inline: 1rem;
     }
   }

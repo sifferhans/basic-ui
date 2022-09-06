@@ -4,10 +4,15 @@ import path from 'path'
 
 export default defineConfig({
   plugins: [vue()],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+    }
+  },
   build: {
     lib: {
-      entry: path.resolve(__dirname, './src/main.js'),
-      name: 'basic-ui',
+      entry: path.resolve(__dirname, './src/index.ts'),
+      name: '@sifferhans/basic-ui',
       fileName: (format) => `basic-ui.${format}.js`,
     },
     rollupOptions: {
@@ -19,18 +24,4 @@ export default defineConfig({
       },
     },
   },
-  histoire: {
-    tree: {
-      groups: [
-        {
-          id: 'top',
-          title: '',
-        },
-        // {
-        //   title: 'Components',
-        //   include: file => !file.title.includes('Introduction'),
-        // },
-      ],
-    },
-  }
 })

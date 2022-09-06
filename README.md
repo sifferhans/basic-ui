@@ -9,7 +9,8 @@ A collection of basic but polished components for Vue 3.
 
 ## Development
 
-To run the component playground, run this command
+To run the documentation site, run this command
+
 ```
-npm run story:dev
+npm run docs:dev
 ```

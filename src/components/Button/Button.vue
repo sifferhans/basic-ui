@@ -1,42 +1,35 @@
-<script setup>
-defineProps({
-  label: String,
-  tag: {
-    type: [String, Object],
-    default: 'button',
-  },
-  size: {
-    type: String,
-    default: 'default',
-    validator(value) {
-      return ['default', 'small'].includes(value)
-    },
-  },
-  theme: {
-    type: String,
-    default: 'default',
-    validator(value) {
-      return [
-        'default',
-        'primary',
-        'secondary',
-        'tertiary',
-        'positive',
-        'negative',
-      ].includes(value)
-    },
-  },
-  loading: {
-    type: Boolean,
-    default: false,
-  },
-  disabled: {
-    type: Boolean,
-    default: false,
-  },
+<script setup lang="ts">
+export type ButtonSize = 'small' | 'default'
+export type ButtonType = 'button' | 'submit' | 'reset'
+export type ButtonTheme =
+  | 'default'
+  | 'primary'
+  | 'secondary'
+  | 'tertiary'
+  | 'link'
+
+export interface ButtonProps {
+  label?: string
+  tag?: string
+  size?: ButtonSize
+  theme?: ButtonTheme
+  loading?: boolean
+  disabled?: boolean
+  type?: ButtonType
+}
+
+withDefaults(defineProps<ButtonProps>(), {
+  tag: 'button',
+  size: 'default',
+  theme: 'default',
+  loading: false,
+  disabled: false,
+  type: 'button',
 })
 
-const emit = defineEmits(['click'])
+const emit = defineEmits<{
+  click: (event: MouseEvent) => void
+}>()
 </script>
 
 <template>
@@ -71,11 +64,16 @@ const emit = defineEmits(['click'])
 
   padding-inline: var(--b-button-padding-inline);
   padding-block: var(--b-button-padding-block);
-  border-radius: var(--b-border-radius, var(--_b-border-radius));
+  border-radius: var(--b-border-radius, 0.5rem);
 
   display: flex;
   align-items: center;
   gap: var(--b-button-gap, 0.5rem);
+
+  &:focus-visible {
+    outline: 2px solid var(--b-color-primary, black);
+    outline-offset: 2px;
+  }
 
   &:not(:disabled) {
     cursor: pointer;
@@ -86,18 +84,18 @@ const emit = defineEmits(['click'])
   }
 
   &__content {
-    transition: 150ms var(--b-easing-function, var(--_b-easing-function));
+    transition: 150ms var(--b-easing-function, ease);
   }
 
   /* Sizes */
   &--size {
     &-default {
-      --b-button-padding-block: 0.75rem;
+      --b-button-padding-block: 0.6rem;
       --b-button-padding-inline: 1rem;
     }
 
     &-small {
-      --b-button-padding-block: 0.4rem;
+      --b-button-padding-block: 0.25rem;
       --b-button-padding-inline: 0.6rem;
     }
   }
@@ -122,8 +120,7 @@ const emit = defineEmits(['click'])
         border-right-color: currentColor;
         border-top-color: currentColor;
 
-        animation: spin 1s var(--b-easing-function, var(--_b-easing-function))
-          infinite;
+        animation: spin 1s var(--b-easing-function, ease) infinite;
       }
 
       .b-button__content {
@@ -140,122 +137,86 @@ const emit = defineEmits(['click'])
   /* Themes */
   &--theme {
     &-default {
-      background-color: var(--b-color-default, #f0f0f0);
-      color: var(--b-color-default-contrast, #000000);
+      background-color: transparent;
+      color: var(--b-color-primary, black);
 
-      &:not(:disabled):hover {
-        background-color: var(--b-color-default--hover, #eaeaea);
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background-color: var(--b-color-primary, black);
+        opacity: 0.06;
+        z-index: -1;
+      }
+
+      &:not(:disabled):where(:hover, :focus-visible) {
+        &::before {
+          opacity: 0.1;
+        }
       }
 
       &:not(:disabled):active {
-        background-color: var(--b-color-default--active, #e0e0e0);
+        &::before {
+          opacity: 0.12;
+        }
       }
     }
 
     &-primary {
-      background-color: var(--b-color-primary, var(--_b-color-primary));
-      color: var(--b-color-primary-contrast, var(--_b-color-primary-contrast));
+      background-color: var(--b-color-primary, black);
+      color: var(--b-color-primary-contrast, white);
 
-      &:not(:disabled):hover {
-        background-color: var(
-          --b-color-primary--hover,
-          var(--_b-color-primary--hover)
-        );
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background-color: white;
+        opacity: 0;
+        z-index: 1;
+      }
+
+      &:not(:disabled):where(:hover, :focus-visible) {
+        &::before {
+          opacity: 0.1;
+        }
       }
 
       &:not(:disabled):active {
-        background-color: var(
-          --b-color-primary--active,
-          var(--_b-color-primary--active)
-        );
+        &::before {
+          opacity: 0.15;
+        }
       }
     }
 
     &-secondary {
       background-color: transparent;
-      color: var(--b-color-secondary, var(--_b-color-primary));
-      border: 1px solid var(--b-color-secondary, var(--_b-color-primary));
-
-      &:not(:disabled):hover {
-        background-color: transparent;
-        border-color: var(
-          --b-color-secondary--hover,
-          var(--_b-color-primary--hover)
-        );
-      }
+      color: var(--b-color-primary, black);
+      border: 1px solid var(--b-color-primary, black);
 
       &:not(:disabled):active {
         background-color: transparent;
-        border-color: var(
-          --b-color-secondary--active,
-          var(--_b-color-primary--active)
-        );
+        border-color: var(--b-color-primary--active, black);
       }
     }
 
     &-tertiary {
-      background-color: var(--b-color-tertiary, var(--_b-color-tertiary));
-      color: var(
-        --b-color-tertiary-contrast,
-        var(--_b-color-tertiary-contrast)
-      );
+      background-color: transparent;
+      color: var(--b-color-primary, black);
+      border: 1px solid transparent;
 
-      &:not(:disabled):hover {
-        background-color: var(
-          --b-color-tertiary--hover,
-          var(--_b-color-tertiary--hover)
-        );
-      }
-
-      &:not(:disabled):active {
-        background-color: var(
-          --b-color-tertiary--active,
-          var(--_b-color-tertiary--active)
-        );
+      &:not(:disabled):where(:hover, :focus-visible) {
+        border-color: var(--b-color-primary, black);
       }
     }
 
-    &-positive {
-      background-color: var(--b-color-positive, var(--_b-color-positive));
-      color: var(
-        --b-color-positive-contrast,
-        var(--_b-color-positive-contrast)
-      );
+    &-link {
+      padding: 0;
+      color: var(--b-color-primary, black);
 
-      &:not(:disabled):hover {
-        background-color: var(
-          --b-color-positive--hover,
-          var(--_b-color-positive--hover)
-        );
-      }
-
-      &:not(:disabled):active {
-        background-color: var(
-          --b-color-positive--active,
-          var(--_b-color-positive--active)
-        );
-      }
-    }
-
-    &-negative {
-      background-color: var(--b-color-negative, var(--_b-color-negative));
-      color: var(
-        --b-color-negative-contrast,
-        var(--_b-color-negative-contrast)
-      );
-
-      &:not(:disabled):hover {
-        background-color: var(
-          --b-color-negative--hover,
-          var(--_b-color-negative--hover)
-        );
-      }
-
-      &:not(:disabled):active {
-        background-color: var(
-          --b-color-negative--active,
-          var(--_b-color-negative--active)
-        );
+      &:not(:disabled):where(:hover, :focus-visible) {
+        text-decoration: underline;
       }
     }
   }
