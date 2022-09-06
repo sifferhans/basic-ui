@@ -18,7 +18,7 @@ export interface ButtonProps {
   type?: ButtonType
 }
 
-withDefaults(defineProps<ButtonProps>(), {
+const props = withDefaults(defineProps<ButtonProps>(), {
   tag: 'button',
   size: 'default',
   theme: 'default',
@@ -28,8 +28,14 @@ withDefaults(defineProps<ButtonProps>(), {
 })
 
 const emit = defineEmits<{
-  click: (event: MouseEvent) => void
+  (e: 'click', event: MouseEvent): void
 }>()
+
+function onClick(event: MouseEvent): void {
+  if (!props.disabled) {
+    emit('click', event)
+  }
+}
 </script>
 
 <template>
@@ -44,7 +50,7 @@ const emit = defineEmits<{
         'b-button--state-disabled': disabled,
       },
     ]"
-    @click="emit('click')"
+    @click="onClick"
     :disabled="loading || disabled"
   >
     <div class="b-button__content">

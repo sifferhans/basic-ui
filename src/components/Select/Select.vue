@@ -18,6 +18,10 @@ withDefaults(defineProps<SelectProps>(), {
 const emit = defineEmits<{
   (e: 'update:modelValue', value: string): void
 }>()
+
+function onInput(event: Event): void {
+  emit('update:modelValue', (event.target as HTMLInputElement).value)
+}
 </script>
 
 <template>
@@ -32,7 +36,7 @@ const emit = defineEmits<{
       class="b-select__element"
       v-bind="$attrs"
       :value="modelValue"
-      @input="emit('update:modelValue')"
+      @input="onInput"
     >
       <option value="" disabled>{{ placeholder }}</option>
       <option v-for="(item, i) in items" :key="i" :value="item.value">

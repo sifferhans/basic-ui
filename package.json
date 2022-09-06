@@ -16,19 +16,20 @@
   "types": "./dist/types/index.d.ts",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && vue-tsc --emitDeclarationOnly && mv dist/src dist/types",
-    "preview": "vite serve",
+    "build": "vite build && vue-tsc --emitDeclarationOnly",
+    "preview": "vite preview",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs"
   },
   "peerDependencies": {
-    "vue": "^3.2.25"
+    "vue": "^3.2.25",
+    "typescript": "^4.8.2"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^2.3.3",
+    "@vitejs/plugin-vue": "^3.1.0",
     "sass": "^1.53.0",
-    "vite": "^2.9.9",
+    "vite": "^3.1.0",
     "vitepress": "^1.0.0-alpha.12",
     "vue-loader": "^16.8.3",
     "vue-tsc": "^0.40.7"

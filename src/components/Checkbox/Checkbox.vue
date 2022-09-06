@@ -4,7 +4,7 @@ export interface CheckboxProps {
   sublabel?: string
   checked?: boolean
   required?: boolean
-  modelValue?: boolean | string | number
+  modelValue?: any
 }
 
 withDefaults(defineProps<CheckboxProps>(), {
@@ -13,8 +13,12 @@ withDefaults(defineProps<CheckboxProps>(), {
 })
 
 const emit = defineEmits<{
-  (e: 'update:modelValue', value: boolean): void
+  (e: 'update:modelValue', value: any): void
 }>()
+
+function onChange(event: Event): void {
+  emit('update:modelValue', (event.target as HTMLInputElement).value)
+}
 </script>
 
 <template>
@@ -24,7 +28,7 @@ const emit = defineEmits<{
       class="b-checkbox__element"
       :value="modelValue"
       :checked="checked"
-      @change="emit('update:modelValue', $event.target.value)"
+      @change="onChange"
     />
     <svg
       xmlns="http://www.w3.org/2000/svg"

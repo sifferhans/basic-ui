@@ -20,6 +20,10 @@ withDefaults(defineProps<InputProps>(), {
 const emit = defineEmits<{
   (e: 'update:modelValue', value: string | number): void
 }>()
+
+function onInput(event: Event): void {
+  emit('update:modelValue', (event.target as HTMLInputElement).value)
+}
 </script>
 
 <template>
@@ -36,7 +40,7 @@ const emit = defineEmits<{
       :type="type"
       :required="required"
       :placeholder="placeholder"
-      @input="emit('update:modelValue', $event.target.value)"
+      @input="onInput"
       v-bind="$attrs"
     />
   </label>
