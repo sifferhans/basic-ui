@@ -1,5 +1,5 @@
 {
-  "name": "@sifferhans/basic-ui",
+  "name": "@sigveh/basic-ui",
   "description": "A collection of basic but polished components made with Vue 3 and TypeScript.",
   "version": "1.0.0",
   "scripts": {
