@@ -1,7 +1,7 @@
 {
   "name": "basic-ui",
   "description": "A collection of basic but polished components made with Vue 3 and TypeScript.",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "scripts": {
     "dev": "vite",
     "build": "vite build && vue-tsc --emitDeclarationOnly",
