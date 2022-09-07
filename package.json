@@ -49,5 +49,8 @@
     "vitepress": "^1.0.0-alpha.12",
     "vue-loader": "^16.8.3",
     "vue-tsc": "^0.40.7"
+  },
+  "directories": {
+    "doc": "docs"
   }
 }
