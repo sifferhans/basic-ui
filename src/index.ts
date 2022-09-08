@@ -1,15 +1,13 @@
-import Button from './components/Button/Button.vue'
-import Checkbox from './components/Checkbox/Checkbox.vue'
-import Input from './components/Input/Input.vue'
-import Select from './components/Select/Select.vue'
-import Form from './components/Form/Form.vue'
-import Flex from './components/Flex/Flex.vue'
+import { App } from 'vue'
+import * as components from './components'
 
-export {
-	Button,
-	Checkbox,
-	Input,
-	Select,
-	Form,
-	Flex
+function install(app: App) {
+	for(const key in components) {
+		// @ts-expect-error
+		app.component(key, components[key])
+	}
 }
+
+export default { install }
+
+export * from './components'

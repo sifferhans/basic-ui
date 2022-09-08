@@ -12,16 +12,18 @@ export default defineConfig({
   build: {
     lib: {
       entry: path.resolve(__dirname, './src/index.ts'),
-      name: '@sifferhans/basic-ui',
+      name: '@sigveh/basic-ui',
       fileName: (format) => `basic-ui.${format}.js`,
     },
     rollupOptions: {
       external: ['vue'],
       output: {
+        exports: 'named',
         globals: {
           vue: 'Vue',
         },
       },
     },
+    emptyOutDir: true
   },
 })
