@@ -12,7 +12,8 @@ A collection of basic but polished components for Vue 3.
 To use the components, simply import them where needed.
 
 ```vue
-// myComponent.vue
+<!-- myComponent.vue -->
+
 <script setup lang="ts">
 import { Button, Input, Form } from '@sigveh/basic-ui'
 import '@sigveh/basic-ui/dist/style.css' // should be imported globally, in main.ts
