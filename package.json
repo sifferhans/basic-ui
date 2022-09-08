@@ -30,7 +30,7 @@
       "import": "./dist/basic-ui.es.js",
       "require": "./dist/basic-ui.umd.js"
     },
-    "./dist/styles.css": "./dist/styles.css"
+    "./dist/style.css": "./dist/style.css"
   },
   "scripts": {
     "clean:dist": "rimraf dist",
