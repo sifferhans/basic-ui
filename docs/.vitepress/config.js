@@ -21,6 +21,7 @@ export default {
 				items: [
 					{ text: 'Button', link: '/guide/button' },
 					{ text: 'Input', link: '/guide/input' },
+					{ text: 'Textarea', link: '/guide/textarea' },
 					{ text: 'Select', link: '/guide/select' },
 					{ text: 'Checkbox', link: '/guide/checkbox' },
 					{ text: 'Form', link: '/guide/form' },
@@ -30,6 +31,7 @@ export default {
 				text: 'Layout',
 				items: [
 					{ text: 'Flex', link: '/guide/flex' },
+					{ text: 'Grid', link: '/guide/grid' },
 				]
 			}
 		],

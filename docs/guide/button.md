@@ -11,7 +11,7 @@ If you want to use a Button for navigation purposes, you can set the `tag` prope
 
 ```vue
 <script setup lang="ts">
-import { Button } from '@sifferhans/basic-ui'
+import { Button } from '@sigveh/basic-ui'
 </script>
 
 <template>

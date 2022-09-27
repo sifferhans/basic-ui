@@ -5,9 +5,11 @@ import Flex from '../../src/components/Flex/Flex.vue'
 
 # Flex
 
+The Flex component is a component for declaratively defining `display: flex` CSS layouts.
+
 ```vue
 <script setup lang="ts">
-import { Flex, Button } from '@sifferhans/basic-ui'
+import { Flex, Button } from '@sigveh/basic-ui'
 </script>
 
 <template>
