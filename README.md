@@ -7,6 +7,12 @@ A collection of basic but polished components for Vue 3.
 
 [See the docs](https://basic-ui.sigveh.no/)
 
+## Installation
+
+```bash
+npm install @sigveh/basic-ui
+```
+
 ## Usage
 
 To use the components, simply import them where needed.
