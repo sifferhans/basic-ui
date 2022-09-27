@@ -5,6 +5,7 @@ export interface CheckboxProps {
   checked?: boolean
   required?: boolean
   modelValue?: any
+  name?: string
 }
 
 withDefaults(defineProps<CheckboxProps>(), {
@@ -22,12 +23,14 @@ function onChange(event: Event): void {
 </script>
 
 <template>
-  <label class="b-checkbox">
+  <label class="b-checkbox" :class="{ 'b-checkbox--required': required }">
     <input
       type="checkbox"
       class="b-checkbox__element"
       :value="modelValue"
       :checked="checked"
+      :name="name"
+      :required="required"
       @change="onChange"
     />
     <svg
@@ -55,6 +58,7 @@ function onChange(event: Event): void {
   align-items: start;
   gap: 0.75rem;
   font-size: 1rem;
+  line-height: 1.1;
 
   &:hover {
     .b-checkbox__element:not(:indeterminate, :disabled) {
@@ -62,9 +66,16 @@ function onChange(event: Event): void {
     }
   }
 
+  &--required {
+    .b-checkbox__label:after {
+      content: ' *';
+      color: var(--b-color-negative, #af2929);
+    }
+  }
+
   &__icon {
-    height: 1.2em;
     width: 1em;
+    aspect-ratio: 1;
 
     position: absolute;
     color: var(--b-color-primary-contrast, #ffffff);
@@ -72,7 +83,7 @@ function onChange(event: Event): void {
 
   &__element {
     position: relative;
-    margin: 0.15rem 0;
+    margin: 0;
     appearance: none;
     width: 1.2em;
     aspect-ratio: 1;
@@ -94,15 +105,11 @@ function onChange(event: Event): void {
   &__content {
     display: flex;
     flex-direction: column;
-  }
-
-  &__label {
-    font-weight: medium;
+    gap: 0.25rem;
   }
 
   &__sublabel {
     opacity: 0.5;
-    line-height: 1.1;
   }
 }
 </style>
