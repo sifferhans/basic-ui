@@ -1,5 +1,5 @@
 <script setup lang="ts">
-export type SelectSize = 'default'
+export type SelectSize = 'default' | 'small'
 export type SelectOption = { label: string; value: string }
 export interface SelectProps {
   items: SelectOption[]
@@ -8,6 +8,8 @@ export interface SelectProps {
   required?: boolean
   modelValue?: string
   placeholder?: string
+  description?: string
+  name: string
 }
 
 withDefaults(defineProps<SelectProps>(), {
@@ -32,31 +34,37 @@ function onInput(event: Event): void {
     <div class="b-select__label" v-if="label || $slots.label">
       <slot name="label">{{ label }}</slot>
     </div>
-    <select
-      class="b-select__element"
-      v-bind="$attrs"
-      :value="modelValue"
-      @input="onInput"
-    >
-      <option value="" disabled>{{ placeholder }}</option>
-      <option v-for="(item, i) in items" :key="i" :value="item.value">
-        {{ item.label }}
-      </option>
-    </select>
-    <svg
-      class="b-select__icon"
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke-width="1.5"
-      stroke="currentColor"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9"
-      />
-    </svg>
+    <div class="b-select__wrapper">
+      <select
+        class="b-select__element"
+        v-bind="$attrs"
+        :value="modelValue"
+        :name="name"
+        @input="onInput"
+      >
+        <option value="" disabled>{{ placeholder }}</option>
+        <option v-for="(item, i) in items" :key="i" :value="item.value">
+          {{ item.label }}
+        </option>
+      </select>
+      <svg
+        class="b-select__icon"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9"
+        />
+      </svg>
+    </div>
+    <div v-if="description || $slots.description" class="b-select__description">
+      <slot name="description">{{ description }}</slot>
+    </div>
   </label>
 </template>
 
@@ -66,9 +74,9 @@ function onInput(event: Event): void {
   flex-direction: column;
   gap: 0.25rem;
   font-size: 1rem;
-  position: relative;
 
   &__element {
+    width: 100%;
     padding-inline: var(--b-select-padding-inline);
     padding-block: var(--b-select-padding-block);
     border-radius: var(--b-select-border-radius, 0.5rem);
@@ -82,13 +90,22 @@ function onInput(event: Event): void {
     }
   }
 
+  &__description {
+    opacity: 0.6;
+  }
+
+  &__wrapper {
+    position: relative;
+  }
+
   &__icon {
     pointer-events: none;
     width: 1.5rem;
     aspect-ratio: 1;
     position: absolute;
     right: var(--b-select-padding-inline);
-    bottom: var(--b-select-padding-block);
+    top: 50%;
+    transform: translateY(-50%);
   }
 
   /* Required */
@@ -107,6 +124,10 @@ function onInput(event: Event): void {
     &-default {
       --b-select-padding-block: 0.6rem;
       --b-select-padding-inline: 1rem;
+    }
+    &-small {
+      --b-select-padding-block: 0.25rem;
+      --b-select-padding-inline: 0.6rem;
     }
   }
 }
