@@ -52,6 +52,7 @@ function onClick(event: MouseEvent): void {
     ]"
     @click="onClick"
     :disabled="loading || disabled"
+    :type="type"
   >
     <div class="b-button__content">
       <slot name="icon-left" />

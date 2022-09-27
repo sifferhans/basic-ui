@@ -5,9 +5,11 @@ import Checkbox from '../../src/components/Checkbox/Checkbox.vue'
 
 # Checkbox
 
+Use checkboxes for single or multiple-choice selections.
+
 ```vue
 <script setup lang="ts">
-import { Checkbox } from '@sifferhans/basic-ui'
+import { Checkbox } from '@sigveh/basic-ui'
 </script>
 
 <template>
@@ -18,6 +20,7 @@ import { Checkbox } from '@sifferhans/basic-ui'
 ## Demo
 
 <Flex direction="column">
+  <Checkbox label="This does not have a sublabel" />
   <Checkbox required label="Send me email" sublabel="Receive lots and lots of ads via email" />
   <Checkbox label="Put me on the list" sublabel="Get more emails and ads than ever" />
 </Flex>
@@ -31,5 +34,6 @@ interface CheckboxProps {
   checked?: boolean
   required?: boolean
   modelValue?: boolean | string | number
+  name?: string
 }
 ```

@@ -18,7 +18,7 @@ The Select component is used for selecting one or more choices in a form.
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue'
-import { Select } from '@sifferhans/basic-ui'
+import { Select } from '@sigveh/basic-ui'
 
 const fruits = ref([
   { label: 'Apple', value: 'apple' },
@@ -34,7 +34,10 @@ const fruits = ref([
 
 ## Demo
 
-<Select required label="Favorite fruit" :items="fruits" placeholder="Choose" />
+<Flex direction="column">
+  <Select required label="Favorite fruit" :items="fruits" placeholder="Choose" />
+  <Select label="Small select" :items="fruits" placeholder="Choose" size="small" />
+</Flex>
 
 ## Props
 
@@ -48,6 +51,6 @@ export interface SelectProps {
   placeholder?: string
 }
 
-export type SelectSize = 'default'
+export type SelectSize = 'default' | 'small'
 export type SelectOption = { label: string; value: string }
 ```
