@@ -9,7 +9,7 @@ The Input component is used for user input and data collection.
 
 ```vue
 <script setup lang="ts">
-import { Input } from '@sifferhans/basic-ui'
+import { Input } from '@sigveh/basic-ui'
 </script>
 
 <template>
@@ -23,6 +23,7 @@ import { Input } from '@sifferhans/basic-ui'
 	<Input label="Name" placeholder="John Doe" />
 	<Input label="E-mail" type="email" placeholder="john@doe.com" required />
 	<Input label="Password" type="password" />
+	<Input label="Small input size" size="small" />
 </Flex>
 
 ## Props
@@ -37,6 +38,6 @@ interface InputProps {
   modelValue?: string | number
 }
 
-type InputSize = 'default'
+type InputSize = 'default' | 'small'
 type InputType = 'text' | 'password' | 'email' | 'number' | 'tel' | 'url'
 ```

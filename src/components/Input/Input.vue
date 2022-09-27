@@ -1,5 +1,5 @@
 <script setup lang="ts">
-export type InputSize = 'default'
+export type InputSize = 'default' | 'small'
 export type InputType = 'text' | 'password' | 'email' | 'number' | 'tel' | 'url'
 
 export interface InputProps {
@@ -9,6 +9,8 @@ export interface InputProps {
   required?: boolean
   size?: InputSize
   modelValue?: string | number
+  description?: string
+  name: string
 }
 
 withDefaults(defineProps<InputProps>(), {
@@ -38,11 +40,15 @@ function onInput(event: Event): void {
       class="b-input__element"
       :value="modelValue"
       :type="type"
+      :name="name"
       :required="required"
       :placeholder="placeholder"
       @input="onInput"
       v-bind="$attrs"
     />
+    <div v-if="description || $slots.description" class="b-input__description">
+      <slot name="description">{{ description }}</slot>
+    </div>
   </label>
 </template>
 
@@ -67,6 +73,10 @@ function onInput(event: Event): void {
     }
   }
 
+  &__description {
+    opacity: 0.6;
+  }
+
   /* Required */
   &--required {
     .b-input__label {
@@ -83,6 +93,10 @@ function onInput(event: Event): void {
     &-default {
       --b-input-padding-block: 0.6rem;
       --b-input-padding-inline: 1rem;
+    }
+    &-small {
+      --b-input-padding-block: 0.25rem;
+      --b-input-padding-inline: 0.6rem;
     }
   }
 }
