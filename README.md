@@ -1,7 +1,7 @@
 # Basic UI
 
-> **Warning**
-> This library is very WIP, and should not yet be used in production.
+> **Warning**  
+> This library is very WIP, and should be used with caution.
 
 A collection of basic but polished components for Vue 3.
 
