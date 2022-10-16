@@ -10,13 +10,15 @@ export interface InputProps {
   size?: InputSize
   modelValue?: string | number
   description?: string
-  name: string
+  name?: string
+  loading?: boolean
 }
 
 withDefaults(defineProps<InputProps>(), {
   type: 'text',
   size: 'default',
   required: false,
+  loading: false
 })
 
 const emit = defineEmits<{
@@ -29,23 +31,13 @@ function onInput(event: Event): void {
 </script>
 
 <template>
-  <label
-    class="b-input"
-    :class="[`b-input--size-${size}`, { 'b-input--required': required }]"
-  >
+  <label class="b-input"
+    :class="[`b-input--size-${size}`, { 'b-input--required': required, 'b-input--state-loading': loading, 'b-input--state-disabled': $attrs.disabled }]">
     <div class="b-input__label" v-if="label || $slots.label">
       <slot name="label">{{ label }}</slot>
     </div>
-    <input
-      class="b-input__element"
-      :value="modelValue"
-      :type="type"
-      :name="name"
-      :required="required"
-      :placeholder="placeholder"
-      @input="onInput"
-      v-bind="$attrs"
-    />
+    <input class="b-input__element" :value="modelValue" :type="type" :name="name" :required="required"
+      :placeholder="placeholder" @input="onInput" v-bind="$attrs" />
     <div v-if="description || $slots.description" class="b-input__description">
       <slot name="description">{{ description }}</slot>
     </div>
@@ -60,6 +52,7 @@ function onInput(event: Event): void {
   font-size: 1rem;
 
   &__element {
+    position: relative;
     padding-inline: var(--b-input-padding-inline);
     padding-block: var(--b-input-padding-block);
     border-radius: var(--b-input-border-radius, 0.5rem);
@@ -88,16 +81,52 @@ function onInput(event: Event): void {
     }
   }
 
+  /* States */
+  &--state {
+    &-loading {
+      cursor: wait;
+
+      .b-input__element::after {
+        content: '';
+        height: 0.75rem;
+        aspect-ratio: 1;
+        border-radius: 20rem;
+
+        position: absolute;
+        right: var(--b-input-padding-inline);
+        top: 50%;
+        transform: translateY(-50%);
+
+        border: 2px solid transparent;
+        border-right-color: currentColor;
+        border-top-color: currentColor;
+
+        animation: spin 1s var(--b-easing-function, ease) infinite;
+      }
+    }
+
+    &-disabled {
+      opacity: 0.5;
+    }
+  }
+
   /* Sizes */
   &--size {
     &-default {
       --b-input-padding-block: 0.6rem;
       --b-input-padding-inline: 1rem;
     }
+
     &-small {
       --b-input-padding-block: 0.25rem;
       --b-input-padding-inline: 0.6rem;
     }
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: translateY(-50%) rotate(360deg);
   }
 }
 </style>

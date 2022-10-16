@@ -1,15 +1,17 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
+export type TextareaSize = 'default'
+export type TextareaResize = 'none' | 'both' | 'horizontal' | 'vertical'
 export interface TextareaProps {
   name: string
-  resize?: 'none' | 'both' | 'horizontal' | 'vertical'
+  resize?: TextareaResize
   modelValue?: string
   autoheight?: boolean
   label?: string
   placeholder?: string
   required?: boolean
-  size?: 'default'
+  size?: TextareaSize
   rows?: number
   description?: string
   showCount?: boolean
@@ -38,13 +40,11 @@ function handleInput(event: Event) {
 </script>
 
 <template>
-  <label
-    :class="[
-      `b-textarea b-textarea--size-${size}`,
-      ,
-      { 'b-textarea--required': required },
-    ]"
-  >
+  <label :class="[
+    `b-textarea b-textarea--size-${size}`,
+    ,
+    { 'b-textarea--required': required, 'b-textarea--state-disabled': $attrs.disabled },
+  ]">
     <div class="b-textarea__header">
       <div v-if="label || $slots.label" class="b-textarea__label">
         <slot name="label">{{ label }}</slot>
@@ -53,22 +53,9 @@ function handleInput(event: Event) {
         {{ modelValue?.length }} / {{ maxlength }}
       </div>
     </div>
-    <textarea
-      class="b-textarea__element"
-      :value="modelValue"
-      @input="handleInput"
-      :placeholder="placeholder"
-      :required="required"
-      :rows="rows"
-      :name="name"
-      :maxlength="maxlength"
-      :minlength="minlength"
-      v-bind="$attrs"
-    />
-    <div
-      v-if="description || $slots.description"
-      class="b-textarea__description"
-    >
+    <textarea class="b-textarea__element" :value="modelValue" @input="handleInput" :placeholder="placeholder"
+      :required="required" :rows="rows" :name="name" :maxlength="maxlength" :minlength="minlength" v-bind="$attrs" />
+    <div v-if="description || $slots.description" class="b-textarea__description">
       <slot name="description">{{ description }}</slot>
     </div>
   </label>
@@ -120,6 +107,17 @@ function handleInput(event: Event) {
         color: var(--b-color-negative, #af2929);
         margin-left: 0.25rem;
       }
+    }
+  }
+
+  /** States */
+  &--state {
+    &-disabled {
+      .b-textarea__element {
+        cursor: not-allowed;
+      }
+
+      opacity: 0.5;
     }
   }
 

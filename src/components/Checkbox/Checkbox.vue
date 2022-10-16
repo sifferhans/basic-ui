@@ -1,7 +1,7 @@
 <script setup lang="ts">
 export interface CheckboxProps {
   label?: string
-  sublabel?: string
+  description?: string
   checked?: boolean
   required?: boolean
   modelValue?: any
@@ -14,40 +14,32 @@ withDefaults(defineProps<CheckboxProps>(), {
 })
 
 const emit = defineEmits<{
-  (e: 'update:modelValue', value: any): void
+  <T>(e: 'update:modelValue', value: T): void
+  (e: 'update:checked', value: boolean): void
 }>()
 
 function onChange(event: Event): void {
   emit('update:modelValue', (event.target as HTMLInputElement).value)
+  emit('update:checked', (event.target as HTMLInputElement).checked)
 }
 </script>
 
 <template>
   <label class="b-checkbox" :class="{ 'b-checkbox--required': required }">
-    <input
-      type="checkbox"
-      class="b-checkbox__element"
-      :value="modelValue"
-      :checked="checked"
-      :name="name"
-      :required="required"
-      @change="onChange"
-    />
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      class="b-checkbox__icon"
-      viewBox="0 0 20 20"
-      fill="currentColor"
-    >
-      <path
-        fill-rule="evenodd"
+    <input type="checkbox" class="b-checkbox__element" :value="modelValue" :checked="checked" :name="name"
+      :required="required" @change="onChange" />
+    <svg xmlns="http://www.w3.org/2000/svg" class="b-checkbox__icon" viewBox="0 0 20 20" fill="currentColor">
+      <path fill-rule="evenodd"
         d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-        clip-rule="evenodd"
-      />
+        clip-rule="evenodd" />
     </svg>
     <div class="b-checkbox__content">
-      <span class="b-checkbox__label">{{ label }}</span>
-      <span v-if="sublabel" class="b-checkbox__sublabel">{{ sublabel }}</span>
+      <span class="b-checkbox__label">
+        <slot name="label">{{ label }}</slot>
+      </span>
+      <slot name="description">
+        <span v-if="description || $slots.description" class="b-checkbox__description">{{ description }}</span>
+      </slot>
     </div>
   </label>
 </template>
@@ -108,7 +100,7 @@ function onChange(event: Event): void {
     gap: 0.25rem;
   }
 
-  &__sublabel {
+  &__description {
     opacity: 0.5;
   }
 }

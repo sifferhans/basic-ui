@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import Select from '../../src/components/Select/Select.vue'
 import Flex from '../../src/components/Flex/Flex.vue'
+import Demo from '../components/Demo.vue'
 
 const favorite = ref('')
 const fruits = ref([
@@ -34,10 +35,12 @@ const fruits = ref([
 
 ## Demo
 
-<Flex direction="column">
-  <Select required label="Favorite fruit" :items="fruits" placeholder="Choose" />
-  <Select label="Small select" :items="fruits" placeholder="Choose" size="small" />
-</Flex>
+<Demo>
+  <Flex direction="column">
+    <Select required label="Favorite fruit" :items="fruits" placeholder="Choose" />
+    <Select label="Small select" :items="fruits" placeholder="Choose" size="small" />
+  </Flex>
+</Demo>
 
 ## Props
 
@@ -49,8 +52,18 @@ export interface SelectProps {
   required?: boolean
   modelValue?: string
   placeholder?: string
+  description?: string
+  name?: string
 }
 
 export type SelectSize = 'default' | 'small'
-export type SelectOption = { label: string; value: string }
+export type SelectOption = {
+  label: string
+  value: string
+}
 ```
+
+## Slots
+
+- label
+- description

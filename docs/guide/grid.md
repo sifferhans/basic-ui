@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Textarea from '../../src/components/Textarea/Textarea.vue'
 import Grid from '../../src/components/Grid/Grid.vue'
+import Demo from '../components/Demo.vue'
 </script>
 
 # Grid
@@ -23,13 +24,15 @@ import { Grid, Textarea } from '@sigveh/basic-ui'
 
 ## Demo
 
-<Grid columns="2:1">
-  <Textarea placeholder="I will use two columns"/>
-  <Textarea placeholder="I will use one" />
-  <Textarea />
-</Grid>
+<Demo>
+  <Grid columns="2:1">
+    <Textarea placeholder="I will use two columns"/>
+    <Textarea placeholder="I will use one" />
+    <Textarea />
+  </Grid>
+</Demo>
 
-## Props
+## Type definitions
 
 ```ts
 export interface GridProps {

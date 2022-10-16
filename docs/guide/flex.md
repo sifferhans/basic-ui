@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Button from '../../src/components/Button/Button.vue'
 import Flex from '../../src/components/Flex/Flex.vue'
+import Demo from '../components/Demo.vue'
 </script>
 
 # Flex
@@ -23,26 +24,28 @@ import { Flex, Button } from '@sigveh/basic-ui'
 
 ## Demo
 
-<Flex direction="column" style="border: 1px dashed red; padding: 8px">
-  <small>justify="space-evenly"</small>
-	<Flex justify="space-evenly" style="border: 1px dashed red; padding: 8px">
-		<Button theme="primary">Primary button</Button>
-		<Button theme="secondary">Secondary button</Button>
-		<Button theme="default">Default button</Button>
-	</Flex>
-  <small>justify="space-around"</small>
-	<Flex justify="space-around" style="border: 1px dashed red; padding: 8px">
-		<Button theme="primary">Primary button</Button>
-		<Button theme="secondary">Secondary button</Button>
-		<Button theme="default">Default button</Button>
-	</Flex>
-  <small>justify="space-between"</small>
-	<Flex justify="space-between" style="border: 1px dashed red; padding: 8px">
-		<Button theme="primary">Primary button</Button>
-		<Button theme="secondary">Secondary button</Button>
-		<Button theme="default">Default button</Button>
-	</Flex>
-</Flex>
+<Demo>
+  <Flex direction="column" style="border: 1px dashed red; padding: 8px">
+    <small>justify="space-evenly"</small>
+    <Flex justify="space-evenly" style="border: 1px dashed red; padding: 8px">
+      <Button theme="primary">Primary button</Button>
+      <Button theme="secondary">Secondary button</Button>
+      <Button theme="default">Default button</Button>
+    </Flex>
+    <small>justify="space-around"</small>
+    <Flex justify="space-around" style="border: 1px dashed red; padding: 8px">
+      <Button theme="primary">Primary button</Button>
+      <Button theme="secondary">Secondary button</Button>
+      <Button theme="default">Default button</Button>
+    </Flex>
+    <small>justify="space-between"</small>
+    <Flex justify="space-between" style="border: 1px dashed red; padding: 8px">
+      <Button theme="primary">Primary button</Button>
+      <Button theme="secondary">Secondary button</Button>
+      <Button theme="default">Default button</Button>
+    </Flex>
+  </Flex>
+</Demo>
 
 ## Props
 

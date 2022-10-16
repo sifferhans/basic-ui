@@ -1,4 +1,5 @@
 <script setup lang="ts">
+/** Type definitions */
 export type ButtonSize = 'small' | 'default'
 export type ButtonType = 'button' | 'submit' | 'reset'
 export type ButtonTheme =
@@ -32,28 +33,19 @@ const emit = defineEmits<{
 }>()
 
 function onClick(event: MouseEvent): void {
-  if (!props.disabled) {
-    emit('click', event)
-  }
+  if (props.disabled) return
+  emit('click', event)
 }
 </script>
 
 <template>
-  <component
-    v-bind="$attrs"
-    :is="tag"
-    class="b-button"
-    :class="[
-      `b-button--size-${size} b-button--theme-${theme}`,
-      {
-        'b-button--state-loading': loading,
-        'b-button--state-disabled': disabled,
-      },
-    ]"
-    @click="onClick"
-    :disabled="loading || disabled"
-    :type="type"
-  >
+  <component v-bind="$attrs" :is="tag" class="b-button" :class="[
+    `b-button--size-${size} b-button--theme-${theme}`,
+    {
+      'b-button--state-loading': loading,
+      'b-button--state-disabled': disabled,
+    },
+  ]" @click="onClick" :disabled="loading || disabled" :type="type">
     <div class="b-button__content">
       <slot name="icon-left" />
       <slot name="default">{{ label }}</slot>

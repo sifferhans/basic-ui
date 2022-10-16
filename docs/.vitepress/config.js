@@ -11,13 +11,13 @@ export default {
 		siteTitle: false,
 		sidebar: [
 			{
-				text: 'Guide',
+				text: 'Introduction',
 				items: [
-					{ text: 'Getting started', link: '/guide/getting-started' },
+					{ text: 'Getting started', link: '/' }
 				]
 			},
 			{
-				text: 'Interactivity',
+				text: 'Forms',
 				items: [
 					{ text: 'Button', link: '/guide/button' },
 					{ text: 'Input', link: '/guide/input' },

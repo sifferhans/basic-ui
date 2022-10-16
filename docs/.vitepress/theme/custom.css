@@ -2,4 +2,6 @@
   --vp-c-brand: var(--vp-c-black);
   --vp-c-brand-light: var(--vp-c-black-soft);
   --vp-c-brand-dark: var(--vp-c-black-pure);
+
+  --vp-c-text-1: var(--vp-c-black);
 }

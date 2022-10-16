@@ -6,11 +6,7 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <form
-    class="b-form"
-    @submit.prevent="emit('submit', $event)"
-    @reset="emit('reset')"
-  >
+  <form class="b-form" @submit.prevent="emit('submit', $event)" @reset="emit('reset')">
     <slot />
   </form>
 </template>

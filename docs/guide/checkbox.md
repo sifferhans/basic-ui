@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Flex from '../../src/components/Flex/Flex.vue'
 import Checkbox from '../../src/components/Checkbox/Checkbox.vue'
+import Demo from '../components/Demo.vue'
 </script>
 
 # Checkbox
@@ -19,21 +20,23 @@ import { Checkbox } from '@sigveh/basic-ui'
 
 ## Demo
 
-<Flex direction="column">
-  <Checkbox label="This does not have a sublabel" />
-  <Checkbox required label="Send me email" sublabel="Receive lots and lots of ads via email" />
-  <Checkbox label="Put me on the list" sublabel="Get more emails and ads than ever" />
-</Flex>
+<Demo>
+  <Flex direction="column">
+    <Checkbox label="This does not have a description" />
+    <Checkbox required label="Send me email" description="Receive lots and lots of ads via email" />
+    <Checkbox label="Put me on the list" description="Get more emails and ads than ever" />
+  </Flex>
+</Demo>
 
-## Props
+## Type definitions
 
 ```ts
 interface CheckboxProps {
   label?: string
-  sublabel?: string
+  description?: string
   checked?: boolean
   required?: boolean
-  modelValue?: boolean | string | number
+  modelValue?: any
   name?: string
 }
 ```

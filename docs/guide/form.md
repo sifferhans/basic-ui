@@ -7,6 +7,7 @@ import Input from '../../src/components/Input/Input.vue'
 import Select from '../../src/components/Select/Select.vue'
 import Flex from '../../src/components/Flex/Flex.vue'
 import Textarea from '../../src/components/Textarea/Textarea.vue'
+import Demo from '../components/Demo.vue'
 
 function alert(data: SubmitEvent) {
 	window.alert(data.formData())
@@ -40,14 +41,16 @@ function handleSubmit(event: SubmitEvent): void {
 
 ## Demo
 
-<Form @submit="alert">
-	<Flex direction="column">
-		<Input type="email" name="email" label="Email" placeholder="john@doe.com" required />
-    <Select name="animal" label="Favorite animal" placeholder="None" :items="animals" description="You can only select one animal" required />
-    <Textarea name="comment" label="Comment" :maxlength="100" resize="none" show-count v-model="textarea" />
-    <Flex gap=".5rem" justify="end">
-			<Button theme="tertiary" type="reset">Reset</Button>
-			<Button theme="primary" type="submit">Submit</Button>
-		</Flex>
-	</Flex>
-</Form>
+<Demo>
+  <Form @submit="alert">
+    <Flex direction="column">
+      <Input type="email" name="email" label="Email" placeholder="john@doe.com" required />
+      <Select name="animal" label="Favorite animal" placeholder="None" :items="animals" description="You can only select one animal" required />
+      <Textarea name="comment" label="Comment" :maxlength="100" resize="none" show-count v-model="textarea" />
+      <Flex gap=".5rem" justify="end">
+        <Button theme="tertiary" type="reset">Reset</Button>
+        <Button theme="primary" type="submit">Submit</Button>
+      </Flex>
+    </Flex>
+  </Form>
+</Demo>
