@@ -123,10 +123,4 @@ function onInput(event: Event): void {
     }
   }
 }
-
-@keyframes spin {
-  to {
-    transform: translateY(-50%) rotate(360deg);
-  }
-}
 </style>
