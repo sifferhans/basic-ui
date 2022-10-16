@@ -33,6 +33,19 @@ import '@sigveh/basic-ui/dist/style.css' // should be imported globally, in main
 </template>
 ```
 
+## Currently included components
+
+Here is a simple overview of all components currently included in the library.
+
+- Button
+- Input
+- Textarea
+- Select
+- Checkbox
+- Form
+- Flex
+- Grid
+
 ## Development
 
 To run the documentation site, run this command
