@@ -26,25 +26,45 @@ function onChange(event: Event): void {
 
 <template>
   <label class="b-checkbox" :class="{ 'b-checkbox--required': required }">
-    <input type="checkbox" class="b-checkbox__element" :value="modelValue" :checked="checked" :name="name"
-      :required="required" @change="onChange" />
-    <svg xmlns="http://www.w3.org/2000/svg" class="b-checkbox__icon" viewBox="0 0 20 20" fill="currentColor">
-      <path fill-rule="evenodd"
+    <input
+      type="checkbox"
+      class="b-checkbox__element"
+      :value="modelValue"
+      :checked="checked"
+      :name="name"
+      :required="required"
+      @change="onChange"
+    />
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="b-checkbox__icon"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+    >
+      <path
+        fill-rule="evenodd"
         d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-        clip-rule="evenodd" />
+        clip-rule="evenodd"
+      />
     </svg>
     <div class="b-checkbox__content">
       <span class="b-checkbox__label">
         <slot name="label">{{ label }}</slot>
       </span>
       <slot name="description">
-        <span v-if="description || $slots.description" class="b-checkbox__description">{{ description }}</span>
+        <span
+          v-if="description || $slots.description"
+          class="b-checkbox__description"
+          >{{ description }}</span
+        >
       </slot>
     </div>
   </label>
 </template>
 
 <style lang="scss">
+@import '../../styles/main.scss';
+
 .b-checkbox {
   display: flex;
   align-items: start;
@@ -54,14 +74,14 @@ function onChange(event: Event): void {
 
   &:hover {
     .b-checkbox__element:not(:indeterminate, :disabled) {
-      border-color: var(--b-color-primary, black);
+      border-color: var(--b-color-primary, $primary);
     }
   }
 
   &--required {
     .b-checkbox__label:after {
       content: ' *';
-      color: var(--b-color-negative, #af2929);
+      color: var(--b-color-negative, $negative);
     }
   }
 
@@ -70,7 +90,7 @@ function onChange(event: Event): void {
     aspect-ratio: 1;
 
     position: absolute;
-    color: var(--b-color-primary-contrast, #ffffff);
+    color: var(--b-color-primary-contrast, $primary-contrast);
   }
 
   &__element {
@@ -80,16 +100,16 @@ function onChange(event: Event): void {
     width: 1.2em;
     aspect-ratio: 1;
     flex-shrink: 0;
-    border: 1px solid var(--b-checkbox-border-color, #eaeaea);
-    border-radius: calc(var(--b-border-radius, 0.5rem) / 2);
-    transition: 100ms var(--b-easing-function, ease);
+    border: 1px solid var(--b-checkbox-border-color, #d0d0d0);
+    border-radius: calc(var(--b-border-radius, $border-radius) / 2);
+    transition: 100ms var(--b-easing-function, $easing-function);
 
     &:disabled {
       border-color: var(--b-checkbox-color-disabled, #d0d0d0) !important;
     }
 
     &:checked {
-      border-color: var(--b-color-primary, black);
+      border-color: var(--b-color-primary, $primary);
       border-width: 0.6em;
     }
   }

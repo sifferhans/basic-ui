@@ -40,11 +40,16 @@ function handleInput(event: Event) {
 </script>
 
 <template>
-  <label :class="[
-    `b-textarea b-textarea--size-${size}`,
-    ,
-    { 'b-textarea--required': required, 'b-textarea--state-disabled': $attrs.disabled },
-  ]">
+  <label
+    :class="[
+      `b-textarea b-textarea--size-${size}`,
+      ,
+      {
+        'b-textarea--required': required,
+        'b-textarea--state-disabled': $attrs.disabled,
+      },
+    ]"
+  >
     <div class="b-textarea__header">
       <div v-if="label || $slots.label" class="b-textarea__label">
         <slot name="label">{{ label }}</slot>
@@ -53,15 +58,30 @@ function handleInput(event: Event) {
         {{ modelValue?.length }} / {{ maxlength }}
       </div>
     </div>
-    <textarea class="b-textarea__element" :value="modelValue" @input="handleInput" :placeholder="placeholder"
-      :required="required" :rows="rows" :name="name" :maxlength="maxlength" :minlength="minlength" v-bind="$attrs" />
-    <div v-if="description || $slots.description" class="b-textarea__description">
+    <textarea
+      class="b-textarea__element"
+      :value="modelValue"
+      @input="handleInput"
+      :placeholder="placeholder"
+      :required="required"
+      :rows="rows"
+      :name="name"
+      :maxlength="maxlength"
+      :minlength="minlength"
+      v-bind="$attrs"
+    />
+    <div
+      v-if="description || $slots.description"
+      class="b-textarea__description"
+    >
       <slot name="description">{{ description }}</slot>
     </div>
   </label>
 </template>
 
 <style lang="scss">
+@import '../../styles/main.scss';
+
 .b-textarea {
   display: flex;
   flex-direction: column;
@@ -72,13 +92,13 @@ function handleInput(event: Event) {
     resize: v-bind(resize);
     padding-inline: var(--b-textarea-padding-inline);
     padding-block: var(--b-textarea-padding-block);
-    border-radius: var(--b-textarea-border-radius, 0.5rem);
+    border-radius: var(--b-textarea-border-radius, $border-radius);
 
-    border: 1px solid var(--b-textarea-border-color, #000);
+    border: 1px solid var(--b-textarea-border-color, $primary);
     font: inherit;
 
     &:focus-visible {
-      outline: 2px solid var(--b-color-primary, black);
+      outline: 2px solid var(--b-color-primary, $primary);
       outline-offset: 2px;
     }
   }
@@ -104,7 +124,7 @@ function handleInput(event: Event) {
     .b-textarea__label {
       &:after {
         content: '*';
-        color: var(--b-color-negative, #af2929);
+        color: var(--b-color-negative, $negative);
         margin-left: 0.25rem;
       }
     }

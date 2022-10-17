@@ -39,13 +39,21 @@ function onClick(event: MouseEvent): void {
 </script>
 
 <template>
-  <component v-bind="$attrs" :is="tag" class="b-button" :class="[
-    `b-button--size-${size} b-button--theme-${theme}`,
-    {
-      'b-button--state-loading': loading,
-      'b-button--state-disabled': disabled,
-    },
-  ]" @click="onClick" :disabled="loading || disabled" :type="type">
+  <component
+    v-bind="$attrs"
+    :is="tag"
+    class="b-button"
+    :class="[
+      `b-button--size-${size} b-button--theme-${theme}`,
+      {
+        'b-button--state-loading': loading,
+        'b-button--state-disabled': disabled,
+      },
+    ]"
+    @click="onClick"
+    :disabled="loading || disabled"
+    :type="type"
+  >
     <div class="b-button__content">
       <slot name="icon-left" />
       <slot name="default">{{ label }}</slot>
@@ -55,6 +63,8 @@ function onClick(event: MouseEvent): void {
 </template>
 
 <style lang="scss">
+@import '../../styles/main.scss';
+
 .b-button {
   box-sizing: border-box;
   border: none;
@@ -70,7 +80,7 @@ function onClick(event: MouseEvent): void {
   gap: var(--b-button-gap, 0.5rem);
 
   &:focus-visible {
-    outline: 2px solid var(--b-color-primary, black);
+    outline: 2px solid var(--b-color-primary, $primary);
     outline-offset: 2px;
   }
 
@@ -83,7 +93,7 @@ function onClick(event: MouseEvent): void {
   }
 
   &__content {
-    transition: 150ms var(--b-easing-function, ease);
+    transition: 150ms var(--b-easing-function, $easing-function);
   }
 
   /* Sizes */
@@ -113,18 +123,18 @@ function onClick(event: MouseEvent): void {
         position: absolute;
         left: 50%;
         top: 50%;
-        transform: translate(-50%, -50%);
+        translate: -50% -50%;
 
         border: 2px solid transparent;
         border-right-color: currentColor;
         border-top-color: currentColor;
 
-        animation: spin 1s var(--b-easing-function, ease) infinite;
+        animation: spin 1s linear infinite;
       }
 
       .b-button__content {
         opacity: 0;
-        transform: translateY(0.2rem);
+        translate: 0 0.15rem;
       }
     }
 
@@ -137,14 +147,14 @@ function onClick(event: MouseEvent): void {
   &--theme {
     &-default {
       background-color: transparent;
-      color: var(--b-color-primary, black);
+      color: var(--b-color-primary, $primary);
 
       &::before {
         content: '';
         position: absolute;
         inset: 0;
         border-radius: inherit;
-        background-color: var(--b-color-primary, black);
+        background-color: var(--b-color-primary, $primary);
         opacity: 0.06;
         z-index: -1;
       }
@@ -163,15 +173,15 @@ function onClick(event: MouseEvent): void {
     }
 
     &-primary {
-      background-color: var(--b-color-primary, black);
-      color: var(--b-color-primary-contrast, white);
+      background-color: var(--b-color-primary, $primary);
+      color: var(--b-color-primary-contrast, $primary-contrast);
 
       &::before {
         content: '';
         position: absolute;
         inset: 0;
         border-radius: inherit;
-        background-color: white;
+        background-color: $primary-contrast;
         opacity: 0;
         z-index: 1;
       }
@@ -191,39 +201,33 @@ function onClick(event: MouseEvent): void {
 
     &-secondary {
       background-color: transparent;
-      color: var(--b-color-primary, black);
-      border: 1px solid var(--b-color-primary, black);
+      color: var(--b-color-primary, $primary);
+      border: 1px solid var(--b-color-primary, $primary);
 
       &:not(:disabled):active {
         background-color: transparent;
-        border-color: var(--b-color-primary--active, black);
+        border-color: var(--b-color-primary--active, $primary);
       }
     }
 
     &-tertiary {
       background-color: transparent;
-      color: var(--b-color-primary, black);
+      color: var(--b-color-primary, $primary);
       border: 1px solid transparent;
 
       &:not(:disabled):where(:hover, :focus-visible) {
-        border-color: var(--b-color-primary, black);
+        border-color: var(--b-color-primary, $primary);
       }
     }
 
     &-link {
       padding: 0;
-      color: var(--b-color-primary, black);
+      color: var(--b-color-primary, $primary);
 
       &:not(:disabled):where(:hover, :focus-visible) {
         text-decoration: underline;
       }
     }
-  }
-}
-
-@keyframes spin {
-  to {
-    transform: translate(-50%, -50%) rotate(360deg);
   }
 }
 </style>

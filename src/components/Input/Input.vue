@@ -18,7 +18,7 @@ withDefaults(defineProps<InputProps>(), {
   type: 'text',
   size: 'default',
   required: false,
-  loading: false
+  loading: false,
 })
 
 const emit = defineEmits<{
@@ -31,13 +31,32 @@ function onInput(event: Event): void {
 </script>
 
 <template>
-  <label class="b-input"
-    :class="[`b-input--size-${size}`, { 'b-input--required': required, 'b-input--state-loading': loading, 'b-input--state-disabled': $attrs.disabled }]">
+  <label
+    class="b-input"
+    :class="[
+      `b-input--size-${size}`,
+      {
+        'b-input--required': required,
+        'b-input--state-loading': loading,
+        'b-input--state-disabled': $attrs.disabled,
+      },
+    ]"
+  >
     <div class="b-input__label" v-if="label || $slots.label">
       <slot name="label">{{ label }}</slot>
     </div>
-    <input class="b-input__element" :value="modelValue" :type="type" :name="name" :required="required"
-      :placeholder="placeholder" @input="onInput" v-bind="$attrs" />
+    <div class="b-input__wrapper">
+      <input
+        class="b-input__element"
+        :value="modelValue"
+        :type="type"
+        :name="name"
+        :required="required"
+        :placeholder="placeholder"
+        @input="onInput"
+        v-bind="$attrs"
+      />
+    </div>
     <div v-if="description || $slots.description" class="b-input__description">
       <slot name="description">{{ description }}</slot>
     </div>
@@ -45,6 +64,8 @@ function onInput(event: Event): void {
 </template>
 
 <style lang="scss">
+@import '../../styles/main.scss';
+
 .b-input {
   display: flex;
   flex-direction: column;
@@ -52,18 +73,22 @@ function onInput(event: Event): void {
   font-size: 1rem;
 
   &__element {
-    position: relative;
     padding-inline: var(--b-input-padding-inline);
     padding-block: var(--b-input-padding-block);
     border-radius: var(--b-input-border-radius, 0.5rem);
+    width: 100%;
 
-    border: 1px solid var(--b-input-border-color, #000);
+    border: 1px solid var(--b-input-border-color, $primary);
     font: inherit;
 
     &:focus-visible {
-      outline: 2px solid var(--b-color-primary, black);
+      outline: 2px solid var(--b-color-primary, $primary);
       outline-offset: 2px;
     }
+  }
+
+  &__wrapper {
+    position: relative;
   }
 
   &__description {
@@ -73,9 +98,9 @@ function onInput(event: Event): void {
   /* Required */
   &--required {
     .b-input__label {
-      &:after {
+      &::after {
         content: '*';
-        color: var(--b-color-negative, #af2929);
+        color: var(--b-color-negative, $negative);
         margin-left: 0.25rem;
       }
     }
@@ -86,22 +111,21 @@ function onInput(event: Event): void {
     &-loading {
       cursor: wait;
 
-      .b-input__element::after {
+      .b-input__wrapper::after {
         content: '';
         height: 0.75rem;
         aspect-ratio: 1;
         border-radius: 20rem;
-
         position: absolute;
-        right: var(--b-input-padding-inline);
+        right: var(--b-input-padding-inline, 1rem);
         top: 50%;
-        transform: translateY(-50%);
+        translate: 0 -50%;
 
         border: 2px solid transparent;
         border-right-color: currentColor;
         border-top-color: currentColor;
 
-        animation: spin 1s var(--b-easing-function, ease) infinite;
+        animation: spin 1s linear infinite;
       }
     }
 

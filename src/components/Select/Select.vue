@@ -30,20 +30,39 @@ function onInput(event: Event): void {
 </script>
 
 <template>
-  <label class="b-select" :class="[`b-select--size-${size}`, { 'b-select--required': required }]">
+  <label
+    class="b-select"
+    :class="[`b-select--size-${size}`, { 'b-select--required': required }]"
+  >
     <div class="b-select__label" v-if="label || $slots.label">
       <slot name="label">{{ label }}</slot>
     </div>
     <div class="b-select__wrapper">
-      <select class="b-select__element" v-bind="$attrs" :value="modelValue" :name="name" @input="onInput">
+      <select
+        class="b-select__element"
+        v-bind="$attrs"
+        :value="modelValue"
+        :name="name"
+        @input="onInput"
+      >
         <option value="" disabled>{{ placeholder }}</option>
         <option v-for="(item, i) in items" :key="i" :value="item.value">
           {{ item.label }}
         </option>
       </select>
-      <svg class="b-select__icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-        stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9" />
+      <svg
+        class="b-select__icon"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9"
+        />
       </svg>
     </div>
     <div v-if="description || $slots.description" class="b-select__description">
@@ -53,6 +72,8 @@ function onInput(event: Event): void {
 </template>
 
 <style lang="scss">
+@import '../../styles/main.scss';
+
 .b-select {
   display: flex;
   flex-direction: column;
@@ -63,13 +84,13 @@ function onInput(event: Event): void {
     width: 100%;
     padding-inline: var(--b-select-padding-inline);
     padding-block: var(--b-select-padding-block);
-    border-radius: var(--b-select-border-radius, 0.5rem);
+    border-radius: var(--b-select-border-radius, $border-radius);
 
-    border: 1px solid var(--b-select-border-color, #000);
+    border: 1px solid var(--b-select-border-color, $primary);
     font: inherit;
 
     &:focus-visible {
-      outline: 2px solid var(--b-color-primary, black);
+      outline: 2px solid var(--b-color-primary, $primary);
       outline-offset: 2px;
     }
   }
@@ -89,7 +110,7 @@ function onInput(event: Event): void {
     position: absolute;
     right: var(--b-select-padding-inline);
     top: 50%;
-    transform: translateY(-50%);
+    translate: 0 -50%;
   }
 
   /* Required */
@@ -97,7 +118,7 @@ function onInput(event: Event): void {
     .b-select__label {
       &:after {
         content: '*';
-        color: var(--b-color-negative, #af2929);
+        color: var(--b-color-negative, $negative);
         margin-left: 0.25rem;
       }
     }
