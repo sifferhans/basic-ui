@@ -1,4 +1,4 @@
-![Basic UI logo](./public/logo.svg)
+![Basic UI logo](/logo.svg)
 
 # Getting started
 

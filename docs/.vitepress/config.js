@@ -7,7 +7,7 @@ export default {
 		['link', { rel: 'icon', href: '/favicon.svg' }],
 	],
 	themeConfig: {
-		logo: './logo.svg',
+		logo: '/logo.svg',
 		siteTitle: false,
 		sidebar: [
 			{
@@ -17,7 +17,7 @@ export default {
 				]
 			},
 			{
-				text: 'Forms',
+				text: 'Components',
 				items: [
 					{ text: 'Button', link: '/guide/button' },
 					{ text: 'Input', link: '/guide/input' },
@@ -25,11 +25,6 @@ export default {
 					{ text: 'Select', link: '/guide/select' },
 					{ text: 'Checkbox', link: '/guide/checkbox' },
 					{ text: 'Form', link: '/guide/form' },
-				]
-			},
-			{
-				text: 'Layout',
-				items: [
 					{ text: 'Flex', link: '/guide/flex' },
 					{ text: 'Grid', link: '/guide/grid' },
 				]
