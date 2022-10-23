@@ -24,6 +24,7 @@ export default {
 					{ text: 'Textarea', link: '/guide/textarea' },
 					{ text: 'Select', link: '/guide/select' },
 					{ text: 'Checkbox', link: '/guide/checkbox' },
+					{ text: 'Switch', link: '/guide/switch' },
 					{ text: 'Form', link: '/guide/form' },
 					{ text: 'Flex', link: '/guide/flex' },
 					{ text: 'Grid', link: '/guide/grid' },
