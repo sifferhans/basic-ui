@@ -28,6 +28,7 @@ export default {
 					{ text: 'Form', link: '/guide/form' },
 					{ text: 'Flex', link: '/guide/flex' },
 					{ text: 'Grid', link: '/guide/grid' },
+					{ text: 'Heading', link: '/guide/heading' },
 				]
 			}
 		],
