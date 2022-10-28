@@ -2,7 +2,7 @@
 
 <div align="center"><strong>Basic UI</strong></div>
 <div align="center">A collection of basic but polished components for Vue 3.</div>
-<div align="center"><a href="https://basic-ui.sigveh.no/">See the docs</a></div>
+<div align="center"><a href="https://basic-ui.sigveh.no/">Documentation</a></div>
 
 ## Installation
 
