@@ -1,13 +1,8 @@
-# Basic UI
-
 ![Basic UI cover](https://repository-images.githubusercontent.com/510007369/befa6101-74d8-40cf-8b52-136837c901ab)
 
-> **Warning**  
-> This library is very WIP, and should be used with caution.
-
-A collection of basic but polished components for Vue 3.
-
-[See the docs](https://basic-ui.sigveh.no/)
+<div align="center"><strong>Basic UI</strong></div>
+<div align="center">A collection of basic but polished components for Vue 3.</div>
+<div align="center"><a href="https://basic-ui.sigveh.no/">See the docs</a></div>
 
 ## Installation
 
