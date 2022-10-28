@@ -35,14 +35,16 @@ import '@sigveh/basic-ui/dist/style.css' // should be imported globally, in main
 
 Here is a simple overview of all components currently included in the library.
 
-- Button
-- Input
-- Textarea
-- Select
-- Checkbox
-- Form
-- Flex
-- Grid
+- [Button](https://basic-ui.sigveh.no/guide/button.html)
+- [Input](https://basic-ui.sigveh.no/guide/input.html)
+- [Textarea](https://basic-ui.sigveh.no/guide/textarea.html)
+- [Select](https://basic-ui.sigveh.no/guide/select.html)
+- [Checkbox](https://basic-ui.sigveh.no/guide/checkbox.html)
+- [Switch](https://basic-ui.sigveh.no/guide/switch.html)
+- [Form](https://basic-ui.sigveh.no/guide/form.html)
+- [Flex](https://basic-ui.sigveh.no/guide/flex.html)
+- [Grid](https://basic-ui.sigveh.no/guide/grid.html)
+- [Heading](https://basic-ui.sigveh.no/guide/heading.html)
 
 ## Development
 
