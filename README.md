@@ -57,3 +57,7 @@ npm run docs:dev
 ## Stats
 
 ![Alt](https://repobeats.axiom.co/api/embed/6af9052c6435b935382bf135a294f278bf6665a0.svg "Repobeats analytics image")
+
+## License
+
+Basic UI is licensed under the [MIT license.](https://github.com/sifferhans/basic-ui/blob/master/LICENSE)
