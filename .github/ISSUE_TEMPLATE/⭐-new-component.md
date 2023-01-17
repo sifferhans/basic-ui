@@ -2,7 +2,7 @@
 name: "⭐ New component"
 about: Request new components
 title: "[NEW COMPONENT]"
-labels: enhancement, new component
+labels: new component
 assignees: ''
 
 ---
