@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import Select from '../../src/components/Select/Select.vue'
-import Flex from '../../src/components/Flex/Flex.vue'
+import Select from '../../src/components/Select.vue'
+import Flex from '../../src/components/Flex.vue'
 import Demo from '../components/Demo.vue'
 
 const favorite = ref('')

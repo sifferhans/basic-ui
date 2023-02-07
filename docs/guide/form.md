@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-import Form from '../../src/components/Form/Form.vue'
-import Button from '../../src/components/Button/Button.vue'
-import Input from '../../src/components/Input/Input.vue'
-import Select from '../../src/components/Select/Select.vue'
-import Flex from '../../src/components/Flex/Flex.vue'
-import Textarea from '../../src/components/Textarea/Textarea.vue'
+import Form from '../../src/components/Form.vue'
+import Button from '../../src/components/Button.vue'
+import Input from '../../src/components/Input.vue'
+import Select from '../../src/components/Select.vue'
+import Flex from '../../src/components/Flex.vue'
+import Textarea from '../../src/components/Textarea.vue'
 import Demo from '../components/Demo.vue'
 
 function alert(data: SubmitEvent) {

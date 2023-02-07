@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import Button from '../../src/components/Button/Button.vue'
-import Flex from '../../src/components/Flex/Flex.vue'
+import Button from '../../src/components/Button.vue'
+import Flex from '../../src/components/Flex.vue'
 import Demo from '../components/Demo.vue'
 </script>
 

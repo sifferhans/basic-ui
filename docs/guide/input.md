@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import Input from '../../src/components/Input/Input.vue'
-import Flex from '../../src/components/Flex/Flex.vue'
-import Checkbox from '../../src/components/Checkbox/Checkbox.vue'
+import Input from '../../src/components/Input.vue'
+import Flex from '../../src/components/Flex.vue'
+import Checkbox from '../../src/components/Checkbox.vue'
 import Demo from '../components/Demo.vue'
 
 const isLoading = ref(false)

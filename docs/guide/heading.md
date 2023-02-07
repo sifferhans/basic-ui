@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import Flex from '../../src/components/Flex/Flex.vue'
-import Heading from '../../src/components/Heading/Heading.vue'
-import HeadingLevel from '../../src/components/Heading/HeadingLevel.vue'
+import Flex from '../../src/components/Flex.vue'
+import Heading from '../../src/components/Heading.vue'
 import Demo from '../components/Demo.vue'
 </script>
 
