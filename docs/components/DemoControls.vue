@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Flex from '../../src/components/Flex/Flex.vue'
+import Flex from '../../src/components/Flex.vue'
 
 withDefaults(defineProps<{
   title?: string
