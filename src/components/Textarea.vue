@@ -80,7 +80,7 @@ function handleInput(event: Event) {
 </template>
 
 <style lang="scss">
-@import '../../styles/main.scss';
+@import '../styles/main.scss';
 
 .b-textarea {
   display: flex;

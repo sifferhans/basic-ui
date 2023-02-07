@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { propsToAttrMap } from '@vue/shared';
+import { propsToAttrMap } from '@vue/shared'
 
 export interface SwitchProps {
   modelValue?: boolean
@@ -10,7 +10,7 @@ export interface SwitchProps {
 const props = withDefaults(defineProps<SwitchProps>(), {
   modelValue: false,
   disabled: false,
-  size: 'medium'
+  size: 'medium',
 })
 
 const emit = defineEmits<{
@@ -25,18 +25,25 @@ function toggleValue() {
 </script>
 
 <template>
-  <button :class="['b-switch', `b-switch--size-${size}`, { 'b-switch--on': modelValue }]" @click="toggleValue">
+  <button
+    :class="[
+      'b-switch',
+      `b-switch--size-${size}`,
+      { 'b-switch--on': modelValue },
+    ]"
+    @click="toggleValue"
+  >
     <div class="b-switch__toggle"></div>
   </button>
 </template>
 
 <style lang="scss">
-@import '../../styles/main.scss';
+@import '../styles/main.scss';
 
 .b-switch {
   border: 1px solid var(--b-color-primary, $primary);
   border-radius: 20rem;
-  padding: .2rem;
+  padding: 0.2rem;
   width: calc(var(--b-switch-size) * 2.5);
 
   &__toggle {
