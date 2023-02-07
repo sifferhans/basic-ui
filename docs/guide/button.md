@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import Button from '../../src/components/Button/Button.vue'
-import Flex from '../../src/components/Flex/Flex.vue'
-import Checkbox from '../../src/components/Checkbox/Checkbox.vue'
+import Button from '../../src/components/Button.vue'
+import Flex from '../../src/components/Flex.vue'
+import Checkbox from '../../src/components/Checkbox.vue'
 
 import DemoControls from '../components/DemoControls.vue'
 import Demo from '../components/Demo.vue'

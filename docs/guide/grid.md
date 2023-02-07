@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import Textarea from '../../src/components/Textarea/Textarea.vue'
-import Grid from '../../src/components/Grid/Grid.vue'
+import Textarea from '../../src/components/Textarea.vue'
+import Grid from '../../src/components/Grid.vue'
 import Demo from '../components/Demo.vue'
 </script>
 

@@ -64,7 +64,7 @@ function onInput(event: Event): void {
 </template>
 
 <style lang="scss">
-@import '../../styles/main.scss';
+@import '../styles/main.scss';
 
 .b-input {
   display: flex;

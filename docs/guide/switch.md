@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import Flex from '../../src/components/Flex/Flex.vue'
-import Switch from '../../src/components/Switch/Switch.vue'
+import Flex from '../../src/components/Flex.vue'
+import Switch from '../../src/components/Switch.vue'
 import Demo from '../components/Demo.vue'
 
 import { reactive } from 'vue'

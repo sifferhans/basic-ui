@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import Textarea from '../../src/components/Textarea/Textarea.vue'
-import Checkbox from '../../src/components/Checkbox/Checkbox.vue'
+import Textarea from '../../src/components/Textarea.vue'
+import Checkbox from '../../src/components/Checkbox.vue'
 import Demo from '../components/Demo.vue'
 
 const isDisabled = ref(false)

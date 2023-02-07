@@ -63,7 +63,7 @@ function onClick(event: MouseEvent): void {
 </template>
 
 <style lang="scss">
-@import '../../styles/main.scss';
+@import '../styles/main.scss';
 
 .b-button {
   box-sizing: border-box;
